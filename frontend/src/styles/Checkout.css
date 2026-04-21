@@ -1,0 +1,504 @@
+/* =============================================
+   🟡 CHECKOUT POPUP — FULLY UPDATED FOR PWA
+   Clean UI • UPI Buttons • Coupon Box • Mobile Optimized
+   (Includes all requested spacing, centering, and hover removal)
+============================================= */
+
+/* ---------- Backdrop ---------- */
+.checkout-popup-wrapper {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: fadeInCheckout 0.2s ease-out;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------- Popup Box ---------- */
+.checkout-popup {
+  background: #181818;
+  width: 95%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 1.8rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: slideUpCheckout 0.25s ease-out;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #181818;
+}
+
+/* ---------- Title ---------- */
+.checkout-title {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 0.5rem;
+}
+
+/* ---------- Close Button ---------- */
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.35rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.close-popup:hover {
+  color: #ffcc00;
+  transform: scale(1.15);
+}
+
+/* ---------- Card Sections ---------- */
+.user-details,
+.order-summary,
+.coupon-section,
+.payment-section {
+  background: #222;
+  padding: 1.2rem 1.3rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.15rem;
+}
+
+/* ---------- Section Headings ---------- */
+.user-details h3,
+.order-summary h3,
+.payment-section h3,
+.coupon-section h3 {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #fff;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* ---------- Paragraphs ---------- */
+.user-details p,
+.order-summary p,
+.payment-section p {
+  margin: 0.35rem 0;
+  font-size: 0.92rem;
+  color: #ddd;
+}
+
+/* ---------------------------------------------
+ * ⭐ NEW/UPDATED ADDRESS AND UPLOAD HEADINGS/NOTES
+ * --------------------------------------------- */
+.checkout-popup .address-heading,
+.checkout-popup .upload-heading {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.checkout-popup .address-format-note,
+.checkout-popup .upload-instruction {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+/* ---------- Address textarea ---------- */
+textarea {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.55rem;
+  color: #fff;
+  margin-top: 0.4rem;
+  resize: vertical;
+  /* Allows vertical resizing for long addresses */
+  min-height: 80px;
+  /* Ensures a minimum visible height for easy typing */
+  font-family: "Inter", sans-serif;
+  /* Consistency */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ⭐ ADDED: Style for when the textarea is active/focused */
+textarea:focus {
+  outline: none;
+  /* Remove default browser focus outline */
+  border-color: #ffcc00;
+  /* Highlight border with accent color */
+  box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.3);
+}
+
+/* =============================================
+    ORDER SUMMARY
+============================================= */
+
+.checkout-item {
+  background: #2a2a2a;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+  font-size: 0.9rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+}
+
+.discount-line {
+  color: #00ff7f;
+}
+
+.final-line {
+  margin-top: 0.4rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* =============================================
+    COUPON SECTION
+============================================= */
+
+.coupon-box {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.coupon-box input {
+  flex: 1;
+  background: #2b2b2b;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.45rem 0.6rem;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.apply-btn {
+  background: #ffcc00;
+  color: #000;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.apply-btn:hover {
+  background: #ffd633;
+}
+
+.coupon-msg {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+/* =============================================
+   UPI PAYMENT BUTTONS (ALIGNED)
+============================================= */
+
+.upi-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+}
+
+.upi-btn {
+  flex-basis: auto;
+  max-width: 120px;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #181818;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform 0.15s ease, background 0.15s ease;
+  color: #fff;
+}
+
+.upi-btn img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.3rem;
+}
+
+.upi-btn span {
+  /* Use span for the name, as payment-name class was not used in JSX */
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ddd;
+  text-align: center;
+}
+
+.upi-btn:hover {
+  background: #222222;
+  border-color: #444;
+  transform: scale(1.05);
+}
+
+.upi-btn:hover span {
+  color: #ffffff;
+}
+
+/* =============================================
+   QR CODE (CENTERED)
+============================================= */
+
+.qr-container {
+  display: flex;
+  justify-content: center;
+  /* Centers the QR image horizontally */
+}
+
+.qr-image {
+  /* 🌟 Updated QR image styles for centering and spacing */
+  width: 165px;
+  height: 165px;
+  border-radius: 12px;
+  margin: 1rem 0 1.5rem 0;
+  /* Adjusted vertical margins */
+  padding: 5px;
+  background: black;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  object-fit: contain;
+}
+
+/* .qr-text is no longer needed/used in JSX structure, keeping for reference */
+.qr-text {
+  color: #ccc;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+/* =============================================
+   UPLOAD PAYMENT SCREENSHOT (CENTERED & NO HOVER)
+============================================= */
+
+.upload-section {
+  margin-top: 1rem;
+  /* 🌟 Centering properties */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .upload-text is replaced by .upload-instruction */
+.upload-instruction {
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.file-upload-btn {
+  background: #ffcc00;
+  color: #000;
+  padding: 0.45rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: none;
+}
+
+/* UPDATED: Remove hover effect by keeping the same background */
+.file-upload-btn:hover {
+  background: #ffcc00;
+}
+
+
+.file-name {
+  font-size: 0.85rem;
+  color: #ccc;
+  text-align: center;
+  margin-top: 0.5rem;
+  /* Added margin to separate from button */
+}
+
+.proof-success {
+  color: #00ff7f !important;
+  /* Ensure success color is visible */
+  font-weight: 600;
+}
+
+/* =============================================
+   PLACE ORDER BUTTON
+============================================= */
+
+.place-order-btn,
+.btn {
+  width: 100%;
+  background: #ffcc00;
+  color: #000;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 0.8rem;
+}
+
+.place-order-btn:hover {
+  background: #ffcc00;
+  /* Revert to match original color */
+  transform: none;
+  /* Remove hover animation/scale */
+}
+
+.place-order-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* ---------- Success Message ---------- */
+.success-msg {
+  margin-top: 1rem;
+  background: rgba(0, 128, 0, 0.15);
+  border: 1px solid rgba(0, 255, 127, 0.35);
+  padding: 0.7rem;
+  text-align: center;
+  color: #00ff7f;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* ---------- Scrollbar ---------- */
+.checkout-popup::-webkit-scrollbar {
+  width: 7px;
+}
+
+.checkout-popup::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 5px;
+}
+
+.checkout-popup::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* ---------- Animations ---------- */
+@keyframes slideUpCheckout {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInCheckout {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =============================================
+   📱 MOBILE RESPONSIVE STYLES
+============================================= */
+@media (max-width: 600px) {
+  .checkout-popup {
+    padding: 1.2rem;
+    width: 94%;
+  }
+
+  /* Stack UPI buttons vertically on small screens for usability */
+  .upi-buttons {
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 1rem;
+  }
+
+  .upi-btn {
+    flex-basis: auto;
+    max-width: none;
+    padding: 0.5rem 0.7rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    background: #222;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .upi-btn img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+  }
+
+  .upi-btn span {
+    /* Targeting the payment name text */
+    font-size: 0.88rem;
+    text-align: left;
+  }
+
+  .upi-btn:hover {
+    background: #2a2a2a;
+    transform: none;
+  }
+
+  /* Adjust QR spacing on mobile */
+  .qr-image {
+    width: 140px;
+    height: 140px;
+    margin: 1rem auto 1.5rem;
+    /* Increased mobile spacing */
+  }
+
+  .apply-btn {
+    padding: 0.4rem 0.7rem;
+  }
+
+  .coupon-box input {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,111 @@
+/* Main Navbar Container */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #fdfcfb; /* A very light off-white */
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding doesn't add to the width */
+}
+
+/* Left side of the navbar */
+.navbar-left {
+  flex: 1;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Adjust max-width as needed */
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #a0a0a0;
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 40px; /* Left padding for icon */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input::placeholder {
+  color: #b0b0b0;
+}
+
+.search-input:focus {
+  border-color: #c0c0c0;
+}
+
+/* Right side of the navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* Space between bell and profile */
+}
+
+.notification-bell {
+  position: relative;
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #d4a24e; /* Golden-yellow color */
+  border-radius: 50%;
+  border: 1px solid #fdfcfb;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between avatar and text */
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #c89c4b; /* Mustard/gold color */
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #888;
+}

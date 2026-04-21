@@ -1,0 +1,295 @@
+/* =========================================
+   Add Popup Modal - Unique Prefix: ap-
+========================================= */
+.ap-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: apFadeIn 0.25s ease-in-out;
+}
+
+/* Modal Card Desktop */
+.ap-modal-card {
+  position: relative;
+  width: 580px;
+  max-width: 95%;
+  max-height: 92vh;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  color: #eee;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.ap-title {
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.ap-subtitle {
+  font-size: 0.88rem;
+  color: #aaa;
+  margin-bottom: 1.4rem;
+}
+
+/* Close Button */
+.ap-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 1.6rem;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ap-close-btn:hover {
+  color: #fff;
+}
+
+/* Form Elements */
+.ap-label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.ap-input,
+.ap-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #181818;
+  color: #f5f5f5;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.25s ease;
+}
+
+.ap-input:focus,
+.ap-textarea:focus {
+  border-color: #daa520;
+}
+
+.ap-textarea {
+  height: 90px;
+  resize: none;
+}
+
+/* Upload Box */
+.ap-upload-box {
+  border: 2px dashed #333;
+  border-radius: 10px;
+  background: #141414;
+  padding: 30px;
+  text-align: center;
+  color: #999;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: border 0.3s ease;
+}
+
+.ap-upload-box:hover {
+  border-color: #777;
+  background: #1b1b1b;
+}
+
+.ap-preview-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #000;
+  padding: 4px;
+}
+
+/* Buttons */
+.ap-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+}
+
+.ap-btn {
+  border-radius: 8px;
+  padding: 9px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.ap-btn-pri {
+  background: #daa520;
+  color: #000;
+}
+
+.ap-btn-pri:hover {
+  background: #f2c94c;
+}
+
+.ap-btn-sec {
+  background: #1b1b1b;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.ap-btn-sec:hover {
+  background: #262626;
+}
+
+.ap-btn-danger {
+  background: #a52a2a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Table */
+.ap-list {
+  margin-top: 2rem;
+  border-top: 1px solid #222;
+  padding-top: 1rem;
+}
+
+.ap-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  background: #0d0d0d;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ap-table th,
+.ap-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #222;
+  text-align: left;
+}
+
+.ap-table th {
+  color: #ddd;
+  background: #121212;
+}
+
+.ap-thumb {
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #333;
+}
+
+.ap-text-truncate {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================
+   📱 MOBILE VIEW: ~40% Screen Width
+========================================= */
+@media (max-width: 600px) {
+  .ap-overlay {
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+
+  .ap-modal-card {
+    width: 40vw;
+    /* ✅ Fixed at 40% screen width */
+    min-width: 270px;
+    /* Safety: keeps it readable */
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .ap-title {
+    font-size: 1rem;
+  }
+
+  .ap-subtitle {
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .ap-label {
+    font-size: 0.8rem;
+    margin-top: 0.6rem;
+  }
+
+  .ap-input,
+  .ap-textarea {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .ap-textarea {
+    height: 60px;
+  }
+
+  .ap-upload-box {
+    padding: 15px;
+    font-size: 0.75rem;
+  }
+
+  .ap-preview-img {
+    max-height: 100px;
+  }
+
+  .ap-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ap-btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  /* Hide table title on mobile to save horizontal space */
+  .ap-table th:nth-child(2),
+  .ap-table td:nth-child(2) {
+    display: none;
+  }
+}
+
+@keyframes apFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

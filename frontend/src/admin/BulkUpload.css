@@ -1,0 +1,446 @@
+/* ===========================================
+   BulkUpload.css (Compact Dark Theme - Final Polished - Categories Update & Compact Table)
+   =========================================== */
+
+.bulk-upload-container {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== Modal Overlay ===== */
+.bulk-upload-container .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* ===== Modal Content ===== */
+.bulk-upload-container .modal-content {
+    position: relative;
+    width: 85%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8);
+    padding: 24px 30px;
+    scrollbar-width: thin;
+    scrollbar-color: #f2c572 #333;
+    z-index: 10000;
+}
+
+/* ===== Headings ===== */
+.bulk-upload-container .modal-content h3,
+.bulk-upload-container .modal-content h4 {
+    color: #ffffff !important;
+}
+
+.bulk-upload-container .modal-content h3 {
+    margin-bottom: 18px;
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+}
+
+.bulk-upload-container .modal-content h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 6px;
+}
+
+/* ===== Form Sections ===== */
+.bulk-upload-container .form-section {
+    margin-bottom: 20px;
+    background: #242424;
+    padding: 16px 18px;
+    border-radius: 8px;
+    border-left: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Inputs & Textareas (General) ===== */
+.bulk-upload-container input[type="text"],
+.bulk-upload-container input[type="number"],
+.bulk-upload-container textarea {
+    background-color: #2b2b2b;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.bulk-upload-container input:focus,
+.bulk-upload-container textarea:focus {
+    border-color: #f2c572;
+    box-shadow: 0 0 0 2px rgba(242, 197, 114, 0.25);
+    outline: none;
+}
+
+/* ===== Buttons (inside form sections) ===== */
+.bulk-upload-container .form-section button:not(.remove-size-btn):not(.remove-subcat-btn):not(.modal-footer button) {
+    background: #333;
+    color: #f2c572;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.bulk-upload-container .form-section button:not(.remove-size-btn):hover {
+    background: #f2c572;
+    color: #1a1a1a;
+}
+
+/* =======================================
+   ✅ Category Structure (Matching new image)
+   ======================================= */
+
+/* Style for the 'Add new category' input field */
+.bulk-upload-container .add-new-category-input {
+    margin-bottom: 20px;
+}
+
+.bulk-upload-container .add-new-category-input input {
+    width: 100%;
+    /* Ensure it takes full width */
+    padding: 10px 14px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+
+/* Category Group container */
+.bulk-upload-container .category-group {
+    margin-bottom: 12px;
+    /* Removed padding/border to match cleaner look */
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Hide the main category plus button */
+.bulk-upload-container .category-header {
+    /* Removed justify-content: space-between; to align to the left */
+    justify-content: flex-start;
+    margin-bottom: 6px;
+}
+
+.bulk-upload-container .category-header .plus-btn {
+    display: none;
+}
+
+.bulk-upload-container .category-header .category-name-text {
+    font-weight: 600;
+    color: #fff;
+    font-size: 1rem;
+    /* Slightly larger text for main category */
+    margin-left: 8px;
+    /* Space between checkbox and text */
+}
+
+/* Subcategory list styling */
+.bulk-upload-container .subcategory-list {
+    margin: 6px 0 0 35px;
+    /* Increased left margin for deeper indentation */
+    padding-left: 0;
+    border-left: none;
+    /* Removed vertical line */
+    list-style: none;
+}
+
+.bulk-upload-container .subcategory-list li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Ensure subcategory is left-aligned */
+    padding: 3px 0;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}
+
+/* Hide the subcategory remove button */
+.bulk-upload-container .subcategory-list .remove-subcat-btn {
+    display: none;
+}
+
+/* General Checkbox Label/Input Styling */
+.bulk-upload-container .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.bulk-upload-container .checkbox-label input[type="checkbox"] {
+    /* Standard browser checkbox styling */
+    accent-color: #f2c572;
+    transform: scale(1.05);
+    margin: 0;
+    width: 18px;
+    height: 18px;
+}
+
+/* ===========================================
+   ✅ Size Table (Updated for Compactness)
+   =========================================== */
+.bulk-upload-container .size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bulk-upload-container .size-table th,
+.bulk-upload-container .size-table td {
+    /* ⬇️ REDUCED PADDING for compactness */
+    padding: 6px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    color: #eee;
+    /* ⬇️ SLIGHTLY REDUCED FONT SIZE */
+    font-size: 0.8rem;
+}
+
+.bulk-upload-container .size-table th {
+    background: #333;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    /* Make header font slightly smaller */
+}
+
+/* ⬇️ Specific Width for Price/Discount/GST Inputs */
+.bulk-upload-container .size-table input {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 4px;
+    /* ⬇️ Reduced padding and width to fit more columns */
+    padding: 4px 6px;
+    width: 60px;
+    /* Reduced input width */
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+/* ⬇️ Optimize column spacing */
+.bulk-upload-container .size-table td:nth-child(1) {
+    /* Size column */
+    min-width: 80px;
+    /* Ensure size text has enough space */
+    font-weight: 500;
+    white-space: nowrap;
+    /* Prevent size label from wrapping */
+}
+
+.bulk-upload-container .size-table td:nth-child(5) {
+    /* Final Price column */
+    color: #b5f5b5;
+    font-weight: 600;
+    min-width: 80px;
+    /* Ensure final price fits */
+}
+
+.bulk-upload-container .remove-size-btn {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    /* ⬇️ Adjusted button size */
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.bulk-upload-container .remove-size-btn:hover {
+    color: #ff9999;
+}
+
+
+/* ===== Product Rows ===== */
+.bulk-upload-container .bulk-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: #2b2b2b;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.bulk-upload-container .bulk-row input[type="text"],
+.bulk-upload-container .bulk-row input[type="file"] {
+    flex: 1;
+    min-width: 220px;
+    background: #2b2b2b;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.bulk-upload-container .bulk-row input[type="file"]::file-selector-button {
+    background: #444;
+    color: #eee;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* File preview display */
+.bulk-upload-container .bulk-row .file-preview {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: #ccc;
+    padding-top: 2px;
+}
+
+.bulk-upload-container .bulk-row .file-preview span:first-child {
+    color: #f2c572;
+    font-weight: 600;
+}
+
+.bulk-upload-container .bulk-row .file-preview .file-names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.bulk-upload-container .bulk-row .file-preview .file-names span {
+    background: #333;
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #fff;
+    border: 1px solid #444;
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+/* Remove button */
+.bulk-upload-container .bulk-row button {
+    background: #e65c5c;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.85rem;
+}
+
+.bulk-upload-container .bulk-row button:hover {
+    background: #ff7777;
+}
+
+
+/* ===== Footer ===== */
+.bulk-upload-container .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 12px;
+}
+
+.bulk-upload-container .modal-footer button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+/* Cancel button - grey */
+.bulk-upload-container .modal-footer button:first-child {
+    background: #333;
+    color: #ddd;
+}
+
+.bulk-upload-container .modal-footer button:first-child:hover {
+    background: #444;
+}
+
+/* Upload All button - golden */
+.bulk-upload-container .modal-footer button:last-child {
+    background: #f2c572;
+    color: #1a1a1a;
+}
+
+.bulk-upload-container .modal-footer button:last-child:hover {
+    background: #ffda8a;
+}
+
+.bulk-upload-container .modal-footer button:disabled {
+    background: #555;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ===========================================
+   ✅ PRODUCT ROW – FINAL CLEAN FIX
+   =========================================== */
+
+.bulk-upload-container .bulk-row {
+    display: flex;
+    flex-direction: column;        /* stack fields vertically */
+    align-items: stretch;          /* full width children */
+    gap: 12px;
+    background: #2b2b2b;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Product name focus */
+.bulk-upload-container .bulk-row input[type="text"]:focus {
+    border-color: #f2c572 !important;
+    box-shadow: 0 0 6px rgba(242, 197, 114, 0.3);
+    outline: none !important;
+}
+
+/* Sora / Canva button (unchanged) */
+.canva-edit {
+    background: #2a2a2a;
+    color: #f2c572;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.canva-edit:hover {
+    background: #f2c572;
+    color: #1a1a1a;
+}

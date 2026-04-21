@@ -1,0 +1,7 @@
+/* Change the background-color to #000000 */
+body {
+  background-color: #000000; /* This is pure black */
+  color: #e0e0e0;
+  font-family: sans-serif;
+  margin: 0;
+}

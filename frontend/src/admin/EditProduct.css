@@ -1,0 +1,373 @@
+/* ==============================================
+   Edit Product Modal — Premium Dark Styling
+============================================== */
+
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-modal-content {
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+  width: 850px;
+  max-width: 95%;
+  border-radius: 10px;
+  padding: 25px 30px 30px 30px;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  animation: slideDown 0.3s ease-out;
+  border: 1px solid #444;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.edit-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.edit-modal-close:hover {
+  color: #fff;
+}
+
+/* Header */
+.edit-modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Grid Layout */
+.edit-modal-form {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 35px;
+}
+
+/* =======================================
+   LEFT — IMAGE UPLOAD SECTION
+======================================= */
+.form-image-section p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.image-uploader {
+  border: 2px dashed #555;
+  border-radius: 8px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  background-color: #333;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.image-uploader:hover {
+  border-color: #f0b90b;
+  background-color: #383838;
+}
+
+.image-uploader span {
+  color: #f5f5f5;
+  font-weight: 500;
+}
+
+.image-uploader small {
+  color: #a0a0a0;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.image-preview-container {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #222;
+}
+
+/* =======================================
+   RIGHT — PRODUCT DETAILS
+======================================= */
+.form-details-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-full-width {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #f5f5f5;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #f0b90b;
+  background-color: #3a3a3a;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+/* Hint Text */
+.hint-text {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* =======================================
+   SIZE-WISE PRICE SECTION
+======================================= */
+.size-section {
+  margin-top: 20px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 15px 18px;
+}
+
+.size-section label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #f0b90b;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.size-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.size-row input {
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #f5f5f5;
+  padding: 8px 10px;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.size-row input:focus {
+  border-color: #f0b90b;
+  outline: none;
+}
+
+.size-row input[readonly] {
+  background-color: #3b3b3b;
+  color: #ccc;
+}
+
+.remove-size-btn {
+  background: transparent;
+  color: #ff6666;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.remove-size-btn:hover {
+  color: #ff8888;
+}
+
+/* Add Size Button */
+.add-size-btn {
+  margin-top: 10px;
+  background-color: #f0b90b;
+  color: #111;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+.add-size-btn:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+/* =======================================
+   BUTTONS SECTION
+======================================= */
+.edit-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, filter 0.2s ease;
+}
+
+.button.save {
+  background-color: #f0b90b;
+  color: #1a1a1a;
+}
+
+.button.save:hover {
+  filter: brightness(1.1);
+}
+
+.button.cancel {
+  background-color: #4a4a4a;
+  color: #fff;
+}
+
+.button.cancel:hover {
+  background-color: #5a5a5a;
+}
+
+/* Scroll for long content */
+.edit-modal-content form {
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #2a2a2a;
+}
+
+.edit-modal-content form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.edit-modal-content form::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.edit-modal-content form::-webkit-scrollbar-thumb:hover {
+  background-color: #f0b90b;
+}
+
+.image-preview-box {
+  position: relative;
+  display: inline-block;
+  margin: 6px;
+}
+
+.image-preview {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.new-preview {
+  border: 2px solid #4caf50;
+}
+
+.new-badge {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  background: green;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}

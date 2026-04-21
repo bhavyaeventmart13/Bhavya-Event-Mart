@@ -1,0 +1,255 @@
+/* Import clean font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Reset & Body --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #111;
+}
+
+/* Total Layout Wrapper */
+.products-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ============================
+   SIDEBAR
+============================ */
+.sidebar {
+    width: 230px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 25px;
+}
+
+.logo-container {
+    background-color: #D8A941;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    font-size: 22px;
+    color: #1A1A1A;
+}
+
+.header-text h2 {
+    margin: 0 0 2px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.header-text p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #A0A0A0;
+}
+
+/* Sidebar Menu */
+.main-menu {
+    flex-grow: 1;
+    margin-top: 20px;
+}
+
+.menu-title {
+    font-size: 0.7rem;
+    color: #6A6A6A;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #E0E0E0;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 6px;
+}
+
+.menu-item .icon {
+    margin-right: 12px;
+    font-size: 1.2rem;
+}
+
+.menu-item .text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.menu-item:hover a {
+    background-color: #2C2C2C;
+}
+
+/* Active */
+.menu-item.active a {
+    background-color: #D8A941;
+    color: #1A1A1A;
+    font-weight: 600;
+}
+
+/* ============================
+   MAIN CONTENT
+============================ */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: #111;
+    color: #FFF;
+}
+
+/* ============================
+   SETTINGS PAGE STYLES
+============================ */
+.admin-settings-page {
+    padding: 2rem;
+}
+
+.admin-settings-page h2 {
+    color: #FFF;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #aaa;
+    margin-bottom: 2rem;
+}
+
+/* Grid layout */
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+}
+
+/* Card */
+.settings-card {
+    background: #151515;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 1.8rem;
+    color: white;
+    transition: 0.3s;
+}
+
+.settings-card:hover {
+    border-color: #D8A941;
+}
+
+/* White headings */
+.settings-card h3 {
+    color: #FFF;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Inputs */
+.text-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+}
+
+/* Upload label */
+.upload-label {
+    background: #222;
+    color: #f0b90b;
+    border: 1px solid #444;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 12px;
+    transition: 0.2s;
+}
+
+.upload-label:hover {
+    background: #f0b90b;
+    color: #000;
+}
+
+/* Save button */
+.save-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: #f0b90b;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.save-btn:hover {
+    background: #d4a50c;
+}
+
+/* Preview Grid */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.preview-img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+/* No data text */
+.empty-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-settings-page {
+        padding: 1rem;
+    }
+
+    .settings-card {
+        padding: 1.5rem;
+    }
+}

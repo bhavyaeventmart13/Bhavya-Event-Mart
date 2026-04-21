@@ -1,0 +1,121 @@
+/*****************************
+   FULL-WIDTH PRIVACY POLICY 
+   ONLY FOR THIS PAGE
+******************************/
+
+/* Reset for this page only */
+.pp-page, 
+.pp-page * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.pp-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: #f5f5f5;
+    font-family: "Inter", sans-serif;
+    padding: 40px 50px;     /* Full window spacing */
+}
+
+/* Header */
+.pp-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pp-header h1 {
+    font-size: 2.6rem;
+    color: #facc15;
+    font-weight: 800;
+}
+
+.pp-subtitle {
+    font-size: 1.15rem;
+    margin-top: 8px;
+}
+
+.pp-updated {
+    font-size: 0.95rem;
+    color: #bdbdbd;
+}
+
+/* Content - FULL WIDTH */
+.pp-content {
+    width: 100%;
+    max-width: 1300px;      /* keeps it readable */
+    margin: auto;
+    line-height: 1.75;
+    font-size: 1.05rem;
+}
+
+/* Section headers */
+.pp-section {
+    margin-top: 32px;
+    padding-top: 25px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.pp-section h2 {
+    color: #facc15;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.pp-section h3 {
+    color: #eab308;
+    font-size: 1.15rem;
+    margin: 10px 0 6px;
+}
+
+/* Lists */
+.pp-content ul {
+    margin-left: 25px;
+}
+
+.pp-content li {
+    margin-bottom: 6px;
+}
+
+/* Links */
+.pp-content a {
+    color: #facc15;
+    text-decoration: none;
+}
+
+.pp-content a:hover {
+    text-decoration: underline;
+}
+
+/* Highlight box */
+.pp-note {
+    background: rgba(255, 213, 0, 0.1);
+    padding: 12px 16px;
+    border-left: 4px solid #facc15;
+    margin-top: 12px;
+    border-radius: 6px;
+}
+
+/* Address */
+.pp-address {
+    margin-top: 15px;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .pp-page {
+        padding: 25px 20px;
+    }
+
+    .pp-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .pp-section h2 {
+        font-size: 1.2rem;
+    }
+}

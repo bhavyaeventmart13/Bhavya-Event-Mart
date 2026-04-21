@@ -1,0 +1,29 @@
+/* ================= ROOT RESET (FINAL) ================= */
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-x: hidden;   /* only horizontal hidden */
+  overflow-y: auto;     /* allow vertical scroll */
+}
+
+/* React root */
+#root {
+  min-height: 100vh;
+}
+
+/* Remove blinking caret globally */
+body, div, span, h1, h2, h3, h4, h5, h6, p {
+  caret-color: transparent;
+  outline: none;
+}
+
+/* Keep caret for inputs */
+input, textarea {
+  caret-color: auto;
+}

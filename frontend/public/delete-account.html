@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Account | bhavya event mart</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0e0e0e;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 420px;
+  margin: 100px auto;
+  padding: 30px;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  background: #141414;
+  text-align: center;
+}
+
+h1 {
+  color: #d4af37;
+}
+
+p {
+  opacity: 0.8;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  width: 100%;
+  border: none;
+  background: #d4af37;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+.msg {
+  margin-top: 15px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Delete Account</h1>
+
+  <p>
+    This will permanently remove your account and all personal data.
+    This action cannot be undone.
+  </p>
+
+  <button onclick="deleteAccount()">Delete My Account</button>
+
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+const BASE_URL = "https://pankaj-cloth-webapp.onrender.com";
+
+async function deleteAccount() {
+
+  const msgEl = document.getElementById("msg");
+
+  // Confirm action
+  const confirmDelete = confirm(
+    "Are you sure? This will permanently delete your account."
+  );
+  if (!confirmDelete) return;
+
+  // Get token
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    msgEl.innerText = "Please login first.";
+    return;
+  }
+
+  msgEl.innerText = "Deleting account...";
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/user/me`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    // Read response safely
+    const text = await res.text();
+    console.log("Response:", text);
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error("Invalid server response");
+    }
+
+    // Success case
+    if (res.ok && data.success) {
+
+      // Remove token
+      localStorage.removeItem("token");
+
+      msgEl.innerText = "Account deleted successfully.";
+
+      // Redirect after 2 sec
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+
+    } else {
+      msgEl.innerText = data.message || "Failed to delete account.";
+    }
+
+  } catch (err) {
+    console.error(err);
+    msgEl.innerText = "Server error. Please try again.";
+  }
+}
+</script>
+
+</body>
+</html>

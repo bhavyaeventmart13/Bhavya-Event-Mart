@@ -1,0 +1,327 @@
+/* =========================================
+GLOBAL
+========================================= */
+
+.communication-page {
+  display: flex;
+  background: #0d0d0d;
+  min-height: 100vh;
+  color: #e5e5e5;
+  font-family: "Inter", sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 30px;
+  background: #121212;
+}
+
+/* =========================================
+CARDS
+========================================= */
+
+.card {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+/* =========================================
+HEADINGS
+========================================= */
+
+h3 {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* =========================================
+ANALYTICS (HORIZONTAL FIX)
+========================================= */
+
+.analytics-section > div {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.analytics-card {
+  flex: 1;
+  min-width: 160px;
+  background: #0f0f0f;
+  border: 1px solid #2a2a2a;
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.analytics-card:hover {
+  border-color: #ffd700;
+}
+
+.analytics-card p {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.analytics-card h2 {
+  margin-top: 5px;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+/* =========================================
+SEARCH + FILTER
+========================================= */
+
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input-container {
+  position: relative;
+  width: 320px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 12px 10px 35px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: white;
+}
+
+.search-input:focus {
+  border-color: #ffd700;
+  outline: none;
+}
+
+.filter-select {
+  background: #0f0f0f;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  color: white;
+  border-radius: 6px;
+}
+
+.filter-select:focus {
+  border-color: #ffd700;
+  outline: none;
+}
+
+/* =========================================
+KEYWORD INPUT
+========================================= */
+
+.keyword-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.keyword-input-row input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: white;
+}
+
+.keyword-input-row input:focus {
+  border-color: #ffd700;
+  outline: none;
+}
+
+/* =========================================
+TABLE (NO FIXED HEIGHT - INFINITE SCROLL READY)
+========================================= */
+.table-responsive {
+  /* Height restriction removed to allow infinite content flow */
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+thead {
+  background: #111;
+}
+
+thead th {
+  padding: 15px 12px;
+  text-align: left;
+  font-size: 13px;
+  color: #ffd700;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+tbody td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: #1f1f1f;
+}
+
+/* =========================================
+KEYWORD TABLE FIX
+========================================= */
+
+td:nth-child(2) {
+  white-space: normal;
+  line-height: 1.4;
+}
+
+td button {
+  background: #ffd700;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+/* =========================================
+BADGE
+========================================= */
+
+.badge {
+  background: #ffd700;
+  color: black;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================
+MODAL (AUTO-HEIGHT FOR CONVERSATION)
+========================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top for natural scrolling */
+  z-index: 999;
+  padding: 40px 20px;
+  overflow-y: auto; /* The overlay scrolls, not just a small box */
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 800px;
+  background: #121212;
+  border-radius: 12px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  /* Fixed height removed - will grow with content */
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #181818;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* =========================================
+CONVERSATION SECTION (INFINITE FLOW)
+========================================= */
+
+.chat-messages {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #0d0d0d;
+  /* Scroll restriction removed here */
+  min-height: 300px; 
+}
+
+.message {
+  padding: 12px 18px;
+  border-radius: 12px;
+  max-width: 85%;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.message.user {
+  background: #2a2a2a;
+  color: #fff;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.message.admin {
+  background: #ffd700;
+  color: black;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+/* =========================================
+REPLY BOX (STUCK TO BOTTOM IF NEEDED)
+========================================= */
+
+.reply-box {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  background: #181818;
+  border-top: 1px solid #2a2a2a;
+  position: sticky;
+  bottom: 0;
+}
+
+.reply-box input {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #0f0f0f;
+  color: white;
+}

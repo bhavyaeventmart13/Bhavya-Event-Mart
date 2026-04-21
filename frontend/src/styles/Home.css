@@ -1,0 +1,386 @@
+/* =====================================================
+  GLOBAL THEME & VARIABLES
+===================================================== */
+:root {
+  --color-primary: #daa520;
+  --color-text-light: #e0e0e0;
+  --color-text-medium: #cccccc;
+  --color-text-dark: #777777;
+  --color-text-white: #ffffff;
+  --bg-black: #000000;
+  --bg-dark: #0d0d0d;
+  --bg-card: #1a1a1a;
+  --bg-input: #2f2f2f;
+  --bg-button-hover: #3a3a3a;
+  --border-color-light: #555555;
+  --border-color-dark: #444444;
+  --border-color-darkest: #2f2f2f;
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
+}
+
+/* =====================================================
+  BASE STYLES
+===================================================== */
+body {
+  background-color: var(--bg-black);
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--color-text-light);
+  overflow-x: hidden;
+}
+
+/* =====================================================
+  CAROUSEL BANNER STYLES
+===================================================== */
+.carousel-wrapper {
+  height: 220px;
+  margin: 0 0.5rem;
+width: calc(100% - 1rem);
+
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.carousel-wrapper img {
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel .slider {
+  transition-duration: 1.2s !important;
+}
+
+/* =====================================================
+  LAYOUT STRUCTURE
+===================================================== */
+.home-layout {
+  display: flex;
+  width: 100%;
+}
+
+/* === DESKTOP SIDEBAR: Fixed width (250px) on screens > 992px === */
+  .home-layout>.sidebar {
+    /* Selector must match the component's top-level class name */
+    flex: 0 0 250px;
+    background-color: var(--bg-dark);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow: visible;
+    z-index: 10;
+  }
+
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* =====================================================
+  HERO TEXT CONTAINER
+===================================================== */
+.hero-text-container {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-serif);
+}
+
+.hero-content .hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-text-white);
+}
+
+.hero-content .hero-tagline {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0.5rem 0;
+}
+
+.hero-content .hero-manufacturer {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0.3rem 0;
+  color: var(--color-text-light);
+}
+
+.hero-content .hero-buttons {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Other styles remain the same... */
+
+/* =====================================================
+  GRID SECTION (Best Seller & Categories)
+===================================================== */
+.grid-section {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
+ margin: 0 0.5rem 1rem 0.5rem;
+  width: calc(100% - 1rem);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.grid-section::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background-color: var(--border-color-dark);
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--border-color-dark);
+  margin: 2rem 0;
+}
+
+/* =====================================================
+  INFO GRID / FOOTER SECTION
+===================================================== */
+.footer-section {
+  width: 100%;
+   padding: 2rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.footer-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.grid-top {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-bottom {
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.info-card {
+  background-color: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+.info-card .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.info-card .card-title svg {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.info-card .card-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-white);
+}
+
+.info-card .card-content {
+  color: var(--color-text-white);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.info-card address {
+  font-style: normal;
+}
+
+/* =====================================================
+  BUTTONS & FORMS
+===================================================== */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-text-white);
+  background-color: transparent;
+  color: var(--color-text-white);
+  text-decoration: none;
+}
+
+.btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.subscription-form {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.subscription-form input {
+  flex-grow: 1;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color-dark);
+  border-radius: 6px;
+  padding: 0.6rem;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.subscription-form button {
+  background-color: #333;
+  border: 1px solid var(--border-color-light);
+  color: var(--color-text-light);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+/* =====================================================
+  RESPONSIVE DESIGN
+===================================================== */
+@media (max-width: 992px) {
+  .home-layout {
+    flex-direction: column;
+  }
+
+  /* 🔴 FIX: Hide the structural sidebar on mobile screens. 
+       The actual mobile sidebar (drawer/overlay) must be handled 
+       by the CategoriesSidebar component's internal CSS and state.
+    */
+  .home-layout>.sidebar {
+    display: none;
+    /* This is the crucial fix */
+  }
+
+  .grid-top,
+  .grid-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-wrapper,
+  .carousel-wrapper img {
+    height: 200px;
+  }
+
+  .hero-text-container {
+    margin: 1rem 1px;
+    padding: 0.8rem;
+  }
+
+  .hero-content .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-content .hero-tagline {
+    font-size: 1.6rem;
+  }
+
+  .hero-content .hero-manufacturer {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .carousel-wrapper,
+  .carousel-wrapper img {
+    height: 150px;
+  }
+
+  .carousel-wrapper {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .hero-text-container {
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .grid-section {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .hero-content .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-content .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .hero-content .hero-manufacturer {
+    font-size: 1.1rem;
+  }
+}
+/* =========================================
+   🧩 FIX: Sidebar submenu visibility
+========================================= */
+@media (min-width: 769px) {
+  .home-main {
+    position: relative;
+    z-index: 1; /* keep content below sidebar hover menus */
+  }
+
+  .categories-sidebar {
+    z-index: 2000 !important; /* ensures sidebar stays above all content */
+  }
+
+  .submenu {
+    z-index: 9999 !important; /* ensures dropdowns float above everything */
+  }
+}
+

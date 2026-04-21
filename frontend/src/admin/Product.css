@@ -1,0 +1,339 @@
+/* ================= ROOT ================= */
+
+:root {
+  --bg:#111;
+  --card:#1a1a1a;
+  --border:#333;
+  --accent:#d8a941;
+  --danger:#dc3545;
+}
+
+/* ================= PAGE ================= */
+
+.products-page{
+  display:flex;
+  min-height:100vh;
+  background:var(--bg);
+  color:#eee;
+}
+
+.products-page .main-content{
+  flex:1;
+  padding:40px;
+}
+
+/* ================= CARD ================= */
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+}
+
+/* ================= BUTTON ================= */
+
+.button{
+  padding:10px 22px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border:none;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.button.primary{
+  background:var(--accent);
+  color:#111;
+}
+
+.button.secondary{
+  background:#333;
+  color:white;
+}
+
+/* ================= HEADER ================= */
+
+.products-header{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* 🔥 MAIN TOP ROW */
+
+.top-action-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:14px;
+}
+
+/* file input */
+
+.top-action-row input[type="file"]{
+  color:white;
+}
+
+/* ================= CSV ================= */
+
+.csv-category-select{
+  background:#1e1e1e;
+  border:1px solid #333;
+  color:white;
+  padding:10px 14px;
+  border-radius:8px;
+  min-width:170px;
+}
+
+/* Subcategory checkbox container */
+
+.csv-subcategory-box{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 18px;
+  padding:10px 14px;
+  background:#0f0f0f;
+  border:1px solid #2a2a2a;
+  border-radius:10px;
+  max-height:90px;
+  overflow-y:auto;
+}
+
+/* Individual checkbox label */
+
+.csv-subcategory-box label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  color:#ddd;
+  white-space:nowrap;
+}
+
+/* Checkbox styling */
+
+.csv-subcategory-box input[type="checkbox"]{
+  accent-color:var(--accent);
+}
+
+/* Scrollbar */
+
+.csv-subcategory-box::-webkit-scrollbar{
+  height:6px;
+  width:6px;
+}
+
+.csv-subcategory-box::-webkit-scrollbar-thumb{
+  background:#444;
+  border-radius:6px;
+}
+
+/* ================= FILTER ================= */
+
+.filter-controls{
+  display:flex;
+  gap:40px;
+  align-items:center;
+}
+
+.search-input{
+  background:transparent;
+  border:1px solid #333;
+  color:white;
+  padding:12px 40px;
+  border-radius:8px;
+}
+
+/* ================= TABLE ================= */
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#222;
+  color:#aaa;
+  padding:14px;
+}
+
+td{
+  padding:12px;
+  border-bottom:1px solid #222;
+}
+
+.product-image{
+  width:52px;
+  height:52px;
+  border-radius:8px;
+}
+
+/* ================= PRODUCT ================= */
+
+.product-name-info{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.product-id{
+  font-size:10px;
+  color:#777;
+}
+
+.size-price-list div{
+  font-size:13px;
+}
+
+.old-price{
+  font-size:11px;
+  color:#777;
+}
+
+/* ================= STATUS ================= */
+
+.status-available{
+  background:rgba(40,167,69,.2);
+  color:#28a745;
+  padding:6px 12px;
+  border-radius:20px;
+}
+
+.status-unavailable{
+  background:rgba(220,53,69,.2);
+  color:#dc3545;
+  padding:6px 12px;
+  border-radius:20px;
+}
+
+.status-low{
+  background:rgba(216,169,65,.2);
+  color:#d8a941;
+  padding:6px 12px;
+  border-radius:20px;
+}
+
+/* ================= ACTIONS ================= */
+
+.action-buttons{
+  display:flex;
+  gap:14px;
+}
+
+.text-button{
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.text-button.edit{color:var(--accent)}
+.text-button.delete{color:var(--danger)}
+
+/* ================= REORDER ================= */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.category-btn{
+  background:#222;
+  border:1px solid #333;
+  color:white;
+  padding:10px 14px;
+  margin:6px;
+  border-radius:8px;
+}
+
+.selected-category{
+  border-color:var(--accent);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+  .top-action-row,
+  .filter-controls{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .csv-subcategory-box{
+    max-height:140px;
+  }
+
+}
+/* ================= FILE INPUT INLINE FIX ================= */
+
+.top-action-row{
+  flex-wrap: nowrap;
+}
+
+/* shrink file input */
+
+.top-action-row input[type="file"]{
+  max-width: 160px;
+  font-size: 12px;
+}
+
+/* keep buttons + inputs same height */
+
+.top-action-row button,
+.top-action-row select,
+.top-action-row input[type="file"]{
+  height: 40px;
+}
+/* ===============================
+   ADMIN CATEGORY DROPDOWN
+================================*/
+
+.admin-category-select {
+  width: 100%;
+  padding: 6px 10px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #2e2e2e;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-category-select:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4);
+}
+
+/* Option styling (browser limited) */
+.admin-category-select option {
+  background-color:  #2a2a2a;
+  color: #fff;
+  font-size: 12px;
+  padding: 8px;
+}
+
+/* Default option */
+.admin-category-select option[value=""] {
+  color: #999;
+}
+.csv-upload-btn {
+  padding: 8px 14px;
+  background: #2b2b2b;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.csv-upload-btn:hover {
+  background: #444;
+}

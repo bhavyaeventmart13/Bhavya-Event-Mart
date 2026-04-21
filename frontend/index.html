@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ App Title -->
+    <title>Bhavya Event Mart</title>
+
+    <!-- ✅ PWA Manifest & Theme -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- ✅ Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
+
+    <!-- ✅ Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="bhavya event mart" />
+
+    <!-- ✅ SEO -->
+    <meta
+      name="description"
+      content="Bhavya Event Mart – Premium supplier of wedding fabrics, hotelware, and event décor since 2025."
+    />
+
+    <!-- ✅ Disable caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- ✅ Main React Entry -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- ✅ Service Worker -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(() => console.log("✅ Service Worker Registered Successfully!"))
+            .catch((err) =>
+              console.error("❌ Service Worker registration failed:", err)
+            );
+        });
+      }
+    </script>
+
+    <!-- 🔥 FINAL DEEP LINK STORE REDIRECT -->
+    <script>
+      (function () {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const source = params.get("source");
+
+          if (source !== "app") return;
+
+          const isAndroid = /Android/i.test(navigator.userAgent);
+          const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+          setTimeout(() => {
+            if (isAndroid) {
+              window.location.href =
+                "https://play.google.com/store/apps/details?id=com.pankajcloth.mobile";
+            } else if (isIOS) {
+              window.location.href =
+                "https://apps.apple.com/in/app/pankaj-cloth/id6758455759";
+            }
+          }, 1500);
+        } catch (e) {
+          console.log("Redirect error:", e);
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+.pwa-modal-backdrop,
+.pwa-ios-banner {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.6);
+  z-index: 99999;
+}
+
+.pwa-modal-card, .pwa-ios-card {
+  width: min(420px, 90vw);
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+
+.pwa-progress {
+  height: 10px; background: #2b2b2b; border-radius: 8px;
+  overflow: hidden; margin: 10px 0;
+}
+.pwa-progress-bar { height: 100%; background: #daa520; transition: width .3s; }
+
+.pwa-close {
+  position: absolute; top: 10px; right: 14px;
+  background: none; border: none; color: #fff; font-size: 22px; cursor: pointer;
+}

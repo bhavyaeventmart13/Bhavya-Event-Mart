@@ -1,0 +1,262 @@
+/* ==========================================
+   GLOBAL RESET
+========================================== */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* 🔥 FIX: Prevents horizontal "wobble" on mobile touch */
+  overflow-x: hidden;
+  position: relative;
+  touch-action: pan-y; /* Ensures touch only moves vertically */
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ==========================================
+   ROOT LAYOUT
+========================================== */
+
+.all-categories-page.home-layout {
+  display: flex;
+  /* 🔥 FIX: Changed to vh for more stable mobile height calculation */
+  min-height: 100vh;
+  background-color: #2b2b2b;
+}
+
+.all-categories-page .home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.all-categories-page .fabric-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* SAME WIDTH FOR HEADER + GRID */
+.fabric-inner {
+  width: 89%;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   HEADER ROW (FIXED ONE LINE)
+========================================== */
+
+.category-header-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto; 
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.back-btn:hover {
+  background: #d4af37;
+  color: black;
+}
+
+/* TOTAL PRODUCTS */
+.product-total {
+  color: #d4af37;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap; 
+}
+
+/* CATEGORY LABEL CENTER */
+.product-label {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 🔥 FIX: Allows label to shrink rather than push the width of the page */
+  min-width: 0; 
+}
+
+/* SHARE BUTTON RIGHT */
+.share-category-btn {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.share-category-btn:hover {
+  background: #d4af37;
+  color: black;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.all-categories-page .fabric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.all-categories-page .fabric-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: #1e1e1e;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.4);
+}
+
+.all-categories-page .fabric-card:hover {
+  border-color: #daa520;
+}
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.all-categories-page .card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3.7 / 4.7;
+  background: black;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.all-categories-page .card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.all-categories-page .card-content {
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.all-categories-page .fabric-card h3 {
+  color: white;
+  font-size: 1rem;
+  margin: 0 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.all-categories-page .fabric-card .card-price {
+  color: #d4af37;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ==========================================
+   SKELETON
+========================================== */
+
+.img-skeleton {
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+  .all-categories-page .fabric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 🔥 MOBILE FIX (ONE LINE) */
+@media (max-width: 650px) {
+  /* 🔥 FIX: Force layout to stay within viewport bounds */
+  .all-categories-page.home-layout {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .fabric-inner {
+    width: 95%;
+  }
+
+  .all-categories-page .fabric-grid {
+    grid-template-columns: 1fr;
+    gap: 20px; /* Slightly reduced gap for mobile */
+  }
+
+  .category-header-row {
+    grid-template-columns: auto auto 1fr auto; 
+    gap: 6px;
+  }
+
+  .product-total {
+    font-size: 12px;
+  }
+
+  .product-label {
+    font-size: 13px;
+  }
+
+  .back-btn {
+    padding: 5px 7px;
+  }
+
+  .share-category-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  /* hide text on mobile */
+  .share-category-btn span {
+    display: none;
+  }
+}

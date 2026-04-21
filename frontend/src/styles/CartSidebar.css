@@ -1,0 +1,350 @@
+/* ===========================================
+   CART SIDEBAR STYLES
+=========================================== */
+
+/* ---------- Overlay (Behind Checkout & Login) ---------- */
+.cart-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 4000;
+  display: flex;
+  justify-content: flex-end;
+  transition: background 0.3s ease;
+}
+
+/* ---------- Sidebar Panel ---------- */
+.cart-sidebar {
+  background: #111;
+  width: 380px;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #222;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 5000;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #333;
+  background: #151515;
+}
+
+.cart-header h3 {
+  color: #fff;
+  /* Changed from gold to white for contrast */
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #d4af37;
+}
+
+/* Cart Items Container */
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.2rem;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #111;
+}
+
+/* ===========================================
+   EACH CART ITEM (Image 2 Layout)
+=========================================== */
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  /* Main direction is column for content and price rows */
+  margin-bottom: 1.2rem;
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 0.8rem;
+  position: relative;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cart-item:hover {
+  transform: scale(1.01);
+}
+
+/* 1. Main Row (Image + Details) */
+.cart-item-main {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  /* Space before price row */
+}
+
+.cart-item-img {
+  width: 65px;
+  /* Slightly larger image */
+  height: 65px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 1px solid #222;
+  flex-shrink: 0;
+}
+
+/* Details and Controls Column */
+.cart-item-details-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* Space between info and quantity row */
+  min-width: 0;
+  /* Crucial for flex item to respect container limits */
+}
+
+.cart-item-info {
+  margin-bottom: 0.5rem;
+}
+
+/* Name and Weight on same line */
+.cart-item-name-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 5px;
+  /* 🌟 IMPROVEMENT: Increase right padding to avoid conflict with X button 🌟 */
+  padding-right: 25px;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 🌟 IMPROVEMENT: Allow name to use more space before truncation 🌟 */
+  max-width: 80%;
+}
+
+.cart-item-weight {
+  color: #bbb;
+  font-size: 0.85rem;
+  margin: 0 0 0 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cart-item-size {
+  color: #bbb;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Quantity Row - Label on left, Controls on right */
+.cart-quantity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.qty-label {
+  font-size: 0.9rem;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Quantity Controls (Minus, Input, Plus) */
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  /* Ensures buttons touch input box */
+}
+
+.qty-btn {
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 8px 10px;
+  /* Increased padding */
+  cursor: pointer;
+  transition: background 0.2s ease;
+  line-height: 1;
+  height: 35px;
+  /* Match input height */
+  width: 35px;
+  /* Square button */
+  box-sizing: border-box;
+}
+
+.qty-btn:hover {
+  background: #444;
+}
+
+/* Input Field Styling (Wide and Centered) */
+.qty-input-box {
+  text-align: center;
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+  border-width: 1px 0;
+  /* Remove side borders where it meets buttons */
+  border-radius: 0;
+  padding: 0.3rem 0.5rem;
+  height: 35px;
+  width: 60px;
+  /* Control the width of the input field */
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.qty-input-box:focus {
+  outline: none;
+}
+
+/* Correcting corner radius for buttons */
+.cart-item-controls .qty-btn:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.cart-item-controls .qty-btn:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+
+/* 2. Price Row (Aligned to the bottom, right side of item) */
+.cart-price-row {
+  display: flex;
+  justify-content: flex-end;
+  /* Push price to the right, aligning with controls */
+  width: 100%;
+  /* 🌟 IMPROVEMENT: Increase top margin for visual separation from quantity row 🌟 */
+  margin-top: 0.5rem;
+}
+
+.cart-item-price {
+  color: #d4af37;
+  /* Gold color for price */
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Remove Item */
+.remove-btn {
+  background: none;
+  border: none;
+  color: #888;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.remove-btn:hover {
+  color: #ff5555;
+}
+
+
+/* Footer */
+.cart-footer {
+  border-top: 1px solid #333;
+  padding: 1rem 1.5rem;
+  background: #151515;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.subtotal span:last-child {
+  color: #d4af37;
+}
+
+/* Buttons */
+.checkout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #d4af37;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: #ffda44;
+}
+
+.continue-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.continue-btn:hover {
+  background: #333;
+}
+
+/* Empty Cart */
+.empty-cart {
+  text-align: center;
+  color: #999;
+  margin-top: 3rem;
+  font-size: 1rem;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .cart-sidebar {
+    width: 100%;
+  }
+
+  /* On small screens, stack the name/weight row */
+  .cart-item-name-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item-weight {
+    margin-left: 0;
+    margin-top: 2px;
+  }
+}

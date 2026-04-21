@@ -1,0 +1,213 @@
+/* ===========================================
+   ADMIN DASHBOARD PAGE
+=========================================== */
+.admin-dashboard-wrapper {
+  display: flex;
+  background: #0d0d0d;
+  color: #e6e6e6;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #0d0d0d;
+  overflow-x: hidden;
+}
+
+/* ===========================================
+   PAGE CONTENT
+=========================================== */
+.admin-dashboard-page {
+  padding: 0 2rem 2rem 2rem;
+  flex: 1;
+  background: #0d0d0d;
+  font-family: "Inter", "Poppins", sans-serif;
+}
+
+.admin-dashboard-page h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+/* ===========================================
+   DASHBOARD GRID (3×3)
+=========================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ===========================================
+   DASHBOARD CARDS
+=========================================== */
+.dashboard-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 1.5rem 1.3rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(240, 185, 11, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  border-color: #f0b90b;
+  transform: translateY(-4px);
+}
+
+.dashboard-card h3 {
+  font-size: 1rem;
+  color: #f0b90b;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-card p {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.dashboard-card.muted {
+  opacity: 0.7;
+}
+
+/* ===========================================
+   STATUS PILLS
+=========================================== */
+.status-pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 0.25rem 0.6rem;
+  display: inline-block;
+}
+
+.status-pill.up {
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.1);
+}
+
+.status-pill.down {
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.1);
+}
+
+.status-pill.neutral {
+  color: #f0b90b;
+  background: rgba(240, 185, 11, 0.1);
+}
+
+/* ===========================================
+   MINI BAR (Updated vs Pending)
+=========================================== */
+.mini-bar {
+  width: 100%;
+  height: 10px;
+  display: flex;
+  background: #1c1c1c;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+
+.bar.delivered {
+  background: #00e676;
+}
+
+.bar.pending {
+  background: #f0b90b;
+}
+
+.mini-pill-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pill {
+  font-size: 0.75rem;
+  border-radius: 10px;
+  padding: 0.15rem 0.5rem;
+  font-weight: 500;
+}
+
+.pill.delivered {
+  background: rgba(0, 230, 118, 0.1);
+  color: #00e676;
+}
+
+.pill.pending {
+  background: rgba(240, 185, 11, 0.1);
+  color: #f0b90b;
+}
+
+/* ===========================================
+   QUICK LINKS
+=========================================== */
+.dashboard-links {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 0 8px rgba(240, 185, 11, 0.05);
+}
+
+.dashboard-links h3 {
+  color: #f0b90b;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.dashboard-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-links li {
+  margin-bottom: 0.6rem;
+}
+
+.dashboard-links a {
+  text-decoration: none;
+  color: #e6e6e6;
+  transition: color 0.25s ease;
+}
+
+.dashboard-links a:hover {
+  color: #f0b90b;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+=========================================== */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.address-cell {
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

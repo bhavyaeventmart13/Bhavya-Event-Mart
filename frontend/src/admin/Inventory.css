@@ -1,0 +1,207 @@
+/* ===========================================
+   INVENTORY PAGE — FINAL OPTIMIZED VERSION
+=========================================== */
+.admin-inventory-page {
+  padding: 2.5rem 3rem;
+  flex: 1;
+  background: #0d0d0d;
+  color: #e6e6e6;
+  font-family: "Inter", "Poppins", sans-serif;
+  min-height: calc(100vh - 100px);
+}
+
+.admin-inventory-page h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+/* =============================
+   TABLE STYLING (Clean Layout)
+============================= */
+.inventory-table {
+  overflow-x: auto;
+  border-radius: 14px;
+  background: #111;
+  border: 1px solid #222;
+  box-shadow: 0 0 16px rgba(240, 185, 11, 0.08);
+  padding: 1rem 1.5rem;
+}
+
+.inventory-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1050px;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #222;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.inventory-table th {
+  background: #181818;
+  color: #f0b90b;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.inventory-table tr:nth-child(even) {
+  background: #141414;
+}
+
+.inventory-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease;
+}
+
+/* =============================
+   COLUMN WIDTHS
+============================= */
+.inventory-table th:nth-child(1),
+.inventory-table td:nth-child(1) {
+  text-align: left;
+  width: 23%;
+}
+
+.inventory-table th:nth-child(2),
+.inventory-table td:nth-child(2) {
+  width: 18%;
+}
+
+.inventory-table th:nth-child(3),
+.inventory-table td:nth-child(3) {
+  width: 20%;
+}
+
+.inventory-table th:nth-child(4),
+.inventory-table td:nth-child(4) {
+  width: 10%;
+}
+
+.inventory-table th:nth-child(5),
+.inventory-table td:nth-child(5) {
+  width: 14%;
+}
+
+.inventory-table th:nth-child(6),
+.inventory-table td:nth-child(6) {
+  width: 15%; /* Increased for + / − visibility */
+}
+
+/* =============================
+   STATUS BADGES
+============================= */
+.stock-badge {
+  padding: 0.35rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.stock-badge.good {
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.15);
+}
+
+.stock-badge.low {
+  color: #f0b90b;
+  background: rgba(240, 185, 11, 0.15);
+}
+
+.stock-badge.out {
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.15);
+}
+
+/* =============================
+   ACTION BUTTONS (+ / − Only)
+============================= */
+.action-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem; /* Slightly more gap for clarity */
+}
+
+.btn-add,
+.btn-remove {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 6px;
+  width: 38px;
+  height: 38px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-add:hover {
+  background: #2e8b57;
+  border-color: #2e8b57;
+}
+
+.btn-remove:hover {
+  background: #ff5252;
+  border-color: #ff5252;
+}
+
+/* =============================
+   RESPONSIVENESS
+============================= */
+@media (max-width: 992px) {
+  .admin-inventory-page {
+    padding: 1.5rem;
+  }
+
+  .inventory-table table {
+    min-width: 850px;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-add,
+  .btn-remove {
+    width: 32px;
+    height: 32px;
+    font-size: 1.05rem;
+  }
+}
+
+/* =============================
+   ANIMATION
+============================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

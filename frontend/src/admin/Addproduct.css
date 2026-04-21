@@ -1,0 +1,808 @@
+/* ==========================
+    Dark Theme Variables
+========================== */
+:root {
+    --primary-color: #c89c4b;
+    /* Gold accent */
+    --primary-hover-color: #e0b468;
+    --background-primary: #121212;
+    /* Page background */
+    --background-secondary: #1e1e1e;
+    /* Modal & Input background */
+    --background-card: #2a2a2a;
+    /* Form sections */
+    --border-color: #444;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-placeholder: #777;
+    --error-color: #e57373;
+}
+
+/* ==========================
+    Modal Overlay & Content
+========================== */
+.ap-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.ap-modal-content {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+.ap-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ap-modal-content::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+}
+
+.ap-modal-content::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.ap-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* ==========================
+    Modal Header
+========================== */
+.ap-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ap-modal-title-group h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.ap-modal-title-group p {
+    margin: 4px 0 0;
+    font-size: 0.95em;
+    color: var(--text-secondary);
+}
+
+.ap-modal-close-button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.ap-modal-close-button:hover {
+    color: var(--text-primary);
+    transform: rotate(90deg);
+}
+
+/* ==========================
+    Form Styling
+========================== */
+.ap-product-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ap-form-section {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: var(--background-card);
+}
+
+.ap-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.ap-section-header h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--text-primary);
+}
+
+.ap-product-form input[type="text"],
+.ap-product-form input[type="number"],
+.ap-product-form select,
+.ap-product-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    color: var(--text-primary);
+    background-color: var(--background-secondary);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ap-product-form input::placeholder,
+.ap-product-form textarea::placeholder {
+    color: var(--text-placeholder);
+}
+
+.ap-product-form input:focus,
+.ap-product-form select:focus,
+.ap-product-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(200, 156, 75, 0.25);
+    outline: none;
+}
+
+.ap-form-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.ap-form-group {
+    flex: 1;
+}
+
+.ap-ref-number {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    background-color: var(--background-secondary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 0;
+    border: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+/* ==================================
+    Categories & Subcategories
+================================== */
+.ap-new-category-input,
+.ap-subcategory-input {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.ap-new-category-input input,
+.ap-subcategory-input input {
+    flex-grow: 1;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    margin-bottom: 0;
+}
+
+.ap-category-group {
+    margin-bottom: 8px;
+}
+
+.ap-category-header {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.ap-category-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ap-category-header .ap-category-checkbox {
+    order: 1;
+    flex-grow: 1;
+}
+
+.ap-category-header .ap-minus-btn {
+    order: 2;
+}
+
+.ap-category-header .ap-plus-btn {
+    order: 3;
+    margin-left: 8px;
+}
+
+.ap-plus-btn,
+.ap-minus-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.ap-plus-btn:hover,
+.ap-minus-btn:hover {
+    background-color: #333;
+    color: var(--text-primary);
+    border-color: #666;
+}
+
+.ap-category-name-text {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.ap-subcategory-input {
+    margin: 8px 0 8px 45px;
+}
+
+.ap-subcategory-dropdown {
+    margin-left: 45px;
+    padding-left: 10px;
+    border-left: 1px solid var(--border-color);
+}
+
+.ap-subcategory-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ap-subcategory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ap-remove-subcat-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.ap-remove-subcat-btn:hover {
+    color: var(--error-color);
+    opacity: 1;
+}
+
+/* ==========================
+    Custom Checkbox
+========================== */
+.ap-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.ap-checkbox-label:hover {
+    color: var(--text-primary);
+}
+
+.ap-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.ap-checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 12px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.ap-checkbox-label input[type="checkbox"]:checked+.ap-checkbox-custom {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.ap-checkbox-label input[type="checkbox"]:checked+.ap-checkbox-custom::after {
+    content: '✓';
+    color: var(--background-primary);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ==========================
+    Sizes & Tags
+========================== */
+.ap-sizes-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ap-size-tag {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-secondary);
+}
+
+.ap-size-tag.selected {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.ap-custom-size-input-group {
+    display: flex;
+    margin-top: 15px;
+}
+
+.ap-custom-size-input-group input {
+    flex: 1;
+    border-radius: 6px 0 0 6px;
+    margin-bottom: 0;
+    border-right: none;
+}
+
+.ap-selected-tags-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ✅ UPDATED: Stacks items vertically */
+
+/* ✅ NEW/UPDATED STYLES FOR SELECTED SIZE ITEMS */
+.ap-selected-size-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--background-card);
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.ap-selected-size-item .ap-size-label {
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+    /* Pushes price input to the right */
+}
+
+.ap-selected-size-item .ap-size-price-input {
+    width: 100px;
+    /* ✅ UPDATED: Reduced width */
+    flex-shrink: 0;
+    /* Prevents input from shrinking */
+    padding: 8px 10px;
+    /* Adjusted padding */
+    text-align: right;
+}
+
+.ap-selected-size-item .ap-remove-tag-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.1em;
+    transition: color 0.2s;
+}
+
+.ap-selected-size-item .ap-remove-tag-button:hover {
+    color: var(--error-color);
+}
+
+
+/* ==========================
+    Image Upload & Previews
+========================== */
+.ap-image-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.ap-image-upload-area:hover {
+    border-color: var(--primary-color);
+    background-color: var(--background-secondary);
+}
+
+.ap-upload-icon {
+    font-size: 3em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.ap-upload-text {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.ap-upload-hint {
+    font-size: 0.85em;
+    color: #777;
+    margin-top: 5px;
+}
+
+.ap-file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ap-image-preview-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.ap-preview-item {
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ap-preview-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+.ap-remove-image-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.ap-remove-image-button:hover {
+    background-color: var(--error-color);
+}
+
+/* ==========================
+    Buttons (Shared Styles)
+========================== */
+.ap-ai-generate,
+.ap-canva-edit,
+.ap-add-button,
+.ap-add-category-btn,
+.ap-add-subcategory-btn,
+.ap-save-category-button {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.ap-ai-generate:hover,
+.ap-canva-edit:hover,
+.ap-add-button:hover,
+.ap-add-category-btn:hover,
+.ap-add-subcategory-btn:hover,
+.ap-save-category-button:hover {
+    color: var(--text-primary);
+    border-color: #666;
+    background-color: #333;
+}
+
+.ap-add-button {
+    border-radius: 0 6px 6px 0;
+    border-left: none;
+}
+
+.ap-add-category-btn,
+.ap-add-subcategory-btn {
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+}
+
+.ap-standalone-button-section {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ap-save-category-button {
+    padding: 8px 16px;
+    width: auto;
+}
+
+/* ==========================
+    Modal Footer
+========================== */
+.ap-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border-color);
+    gap: 12px;
+    background-color: var(--background-card);
+}
+
+.ap-cancel-button,
+.ap-save-button {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.ap-cancel-button {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.ap-cancel-button:hover {
+    background-color: #333;
+    border-color: #666;
+    color: var(--text-primary);
+}
+
+.ap-save-button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #121212;
+}
+
+.ap-save-button:hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 4px 12px rgba(200, 156, 75, 0.2);
+}
+
+/* ==========================
+    SIZE TABLE (Compact & Responsive)
+========================== */
+.ap-size-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.ap-size-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: fixed;
+    /* Keeps proportions */
+}
+
+.ap-size-table th,
+.ap-size-table td {
+    padding: 8px 10px;
+    /* slightly increased */
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ap-size-table th {
+    background-color: var(--background-card);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ✅ Comfortable input size for typing */
+.ap-size-table input {
+    width: 85%;
+    /* wider inputs */
+    padding: 6px 9px;
+    /* taller inputs */
+    font-size: 0.95rem;
+    /* slightly larger text */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--background-card);
+    color: var(--text-primary);
+    text-align: right;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ap-size-table input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(200, 156, 75, 0.25);
+    outline: none;
+}
+
+/* ✅ Adjusted column proportions */
+.ap-size-table th:nth-child(1),
+.ap-size-table td:nth-child(1) {
+    width: 22%;
+}
+
+/* Size */
+.ap-size-table th:nth-child(2),
+.ap-size-table td:nth-child(2) {
+    width: 20%;
+}
+
+/* Price */
+.ap-size-table th:nth-child(3),
+.ap-size-table td:nth-child(3) {
+    width: 16%;
+}
+
+/* Discount */
+.ap-size-table th:nth-child(4),
+.ap-size-table td:nth-child(4) {
+    width: 16%;
+}
+
+/* GST */
+.ap-size-table th:nth-child(5),
+.ap-size-table td:nth-child(5) {
+    width: 20%;
+}
+
+/* Final Price */
+.ap-size-table th:nth-child(6),
+.ap-size-table td:nth-child(6) {
+    width: 10%;
+}
+
+/* Remove */
+
+.ap-final-price {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.ap-size-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Compact remove (X) button */
+.ap-size-table .ap-remove-tag-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.ap-size-table .ap-remove-tag-button:hover {
+    color: var(--error-color);
+}
+
+/* Sticky header */
+.ap-size-table th {
+    position: sticky;
+    top: 0;
+    background-color: var(--background-card);
+    z-index: 2;
+}
+
+.ap-edit-input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: white;
+  margin-left: 10px;
+}
+
+.ap-category-actions,
+.ap-sub-actions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.ap-edit-btn,
+.ap-edit-subcat-btn {
+  background: none;
+  border: none;
+  color: #d4af37;
+  cursor: pointer;
+}
+
+.ap-edit-btn:hover,
+.ap-edit-subcat-btn:hover {
+  color: white;
+}
+.ap-edit-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ap-save-edit {
+  background: green;
+  border: none;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ap-cancel-edit {
+  background: red;
+  border: none;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}

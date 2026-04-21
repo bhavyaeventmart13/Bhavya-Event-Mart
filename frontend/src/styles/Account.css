@@ -1,0 +1,310 @@
+/* ===========================================
+    ACCOUNT PAGE — PREMIUM DARK TABLE THEME
+=========================================== */
+
+.account-wrapper {
+    display: flex;
+    flex-direction: column; 
+    background: #0d0d0d;
+    color: #e6e6e6;
+    min-height: 100vh;
+    font-family: "Inter", "Poppins", sans-serif;
+}
+
+/* Layout: Sidebar + Content */
+.account-layout {
+    display: flex;
+    flex: 1;
+    background: linear-gradient(180deg, #101010, #0b0b0b);
+    min-height: calc(100vh - 80px); 
+}
+
+/* Sidebar Styling - Ensure it's hidden on small screens */
+.account-sidebar {
+    width: 250px; 
+    flex-shrink: 0;
+}
+
+/* Main Content */
+.account-page {
+    flex: 1;
+    padding: 2.5rem 3rem; 
+    background: radial-gradient(circle at top left, #141414 0%, #0a0a0a 70%);
+}
+
+/* Headings */
+.account-page h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 2.2rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+/* ===========================================
+    PROFILE SECTION
+=========================================== */
+.account-info {
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin: 0 auto 2rem auto;
+    max-width: 1200px; 
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.account-info h3 {
+    color: #ffcc00;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 0.6rem;
+}
+
+/* 🖼️ Profile Image Slot Styles */
+.profile-image-container {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 1.5rem;
+}
+
+.profile-image {
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Profile Grid Layout */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+    margin-top: 1.2rem;
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.label {
+    color: #ffcc00;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    color: #eaeaea;
+    font-size: 1rem;
+    font-weight: 500;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+}
+
+/* ===========================================
+    ORDERS TABLE SECTION
+=========================================== */
+.my-orders {
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin: 0 auto 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.my-orders h3 {
+    color: #ffcc00;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 0.6rem;
+}
+
+/* Table Wrapper */
+.order-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
+    border-radius: 12px;
+    margin-top: 1.2rem;
+}
+
+/* Table */
+.order-table {
+    min-width: 600px; 
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a1a1a;
+    color: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table Head */
+.order-table thead {
+    background: #111;
+    color: #ffcc00;
+    font-weight: 600;
+}
+
+.order-table th {
+    padding: 0.8rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+    font-size: 0.85rem; 
+}
+
+/* Table Body */
+.order-table td {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: top;
+    font-size: 0.85rem; 
+    color: #ccc;
+    word-wrap: break-word;
+}
+
+.order-table tr:hover {
+    background: #222;
+    transition: background 0.3s ease;
+}
+
+/* 🎯 NEW: Reduce gap within the Items column (third column) */
+.order-table td:nth-child(3) {
+    /* Set a preferred maximum width for items to encourage wrapping/tightness */
+    max-width: 250px; 
+}
+
+/* 🎯 NEW: Reduce vertical margin/padding for items listed inside the cell */
+.order-table td:nth-child(3) > div {
+    padding: 0;
+    margin: 0.1rem 0; /* Minimal vertical gap between items */
+    line-height: 1.2;
+}
+
+
+/* Payment & Status Colors */
+.order-table td.payment {
+    color: #00ff7f;
+    font-weight: 600;
+}
+.order-table td.status {
+    color: #ffcc00;
+    font-weight: 600;
+}
+
+/* Proof thumbnail - only show the thumbnail */
+.proof-thumb {
+    max-width: 45px; 
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block; 
+}
+
+.view-proof {
+    display: none; 
+}
+
+/* Loading / Empty States */
+.loading,
+.no-orders {
+    text-align: center;
+    font-weight: 600;
+    color: #ffcc00;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===========================================
+    MOBILE RESPONSIVENESS (<= 800px)
+=========================================== */
+@media (max-width: 800px) {
+    /* Hide the sidebar on small screens for full-width content */
+    .account-sidebar {
+        display: none;
+    }
+
+    .account-layout {
+        flex-direction: column;
+    }
+    
+    .account-page {
+        padding: 1.5rem 1rem;
+    }
+    
+    .order-table th,
+    .order-table td {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.78rem; 
+    }
+}
+
+/* ===========================================
+    SMARTPHONE RESPONSIVENESS (<= 600px)
+=========================================== */
+@media (max-width: 600px) {
+    .account-page h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .account-info,
+    .my-orders {
+        padding: 1rem;
+        margin: 0 auto 1.5rem auto;
+    }
+    
+    /* Ensure the Profile Grid stacks vertically */
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    /* Reduced profile image size for very small screens */
+    .profile-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+    .value {
+        font-size: 0.9rem;
+    }
+    
+    /* Final size reduction for table content on smartphones */
+    .order-table th,
+    .order-table td {
+        padding: 0.4rem 0.5rem; 
+        font-size: 0.7rem;
+    }
+    
+    /* Keep Order ID readable */
+    .order-table td:nth-child(1) { 
+        white-space: nowrap;
+    }
+}

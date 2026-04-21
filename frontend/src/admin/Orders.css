@@ -1,0 +1,502 @@
+/* ===========================================
+ * src/admin/Orders.css
+ * Dark Theme Styles with Zero Right Margin (Color Palette Revised)
+ * =========================================== */
+
+:root {
+  /* Dark Theme Colors (Inspired by previous Product.css) */
+  --bg-dark: #111; /* Very dark background (from .products-page) */
+  --bg-card: #1a1a1a; /* Card/Modal background (from .card) */
+  --text-primary: #e0e0e0; /* Light text */
+  --text-secondary: #aaa; /* Subdued text/description (similar to table header/product ID) */
+  --border-color: #333; /* Darker border/divider (used in table/input) */
+  --input-bg: #0e0e0e; /* Input background (from .dropdown-select) */
+  --input-border: #333; /* Input border */
+  --hover-bg: #252525; /* Hover background for lists/rows (from table tbody tr:hover) */
+
+  /* Status Colors */
+  --status-paid: #28a745; /* Green for success/paid (from .status-tag.active) */
+  --status-pending: #d8a941; /* Gold/Yellow for pending (Matching primary accent) */
+  --status-default: #b0b0b0;
+
+  /* Button Colors */
+  --primary-color: #d8a941; /* Gold/Yellow for primary actions (from .button.primary) */
+  --primary-hover: #c89a32; /* Darker gold/yellow hover */
+  --secondary-color: #333; /* Dark gray for secondary (from .button.secondary) */
+  --secondary-hover: #444; /* Darker gray hover */
+}
+
+/* --- General Page & Layout --- */
+.orders-page {
+  display: flex;
+  background-color: var(--bg-dark); /* Full page dark background */
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* Retained structural layout settings */
+  padding: 0 0 20px 10px; 
+  margin-left: 10px;
+  width: calc(100% - 250px);
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  /* Retained structural layout settings */
+  padding: 20px 10px; 
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Header Section --- */
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Retained structural layout settings */
+  padding: 20px 10px 20px 0; 
+  border-bottom: 1px solid var(--border-color);
+  margin: 0;
+}
+
+.header-info h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--primary-color); /* Updated to Gold */
+}
+
+.header-info p {
+  color: var(--text-secondary);
+  margin: 5px 0 0 0;
+}
+
+.header-actions button {
+  margin-left: 10px;
+}
+
+/* --- Buttons --- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.button.primary {
+  background-color: var(--primary-color); /* Updated to Gold */
+  color: var(--bg-card); /* Should be dark text on gold */
+}
+
+.button.primary:hover {
+  background-color: var(--primary-hover); /* Updated to Darker Gold */
+}
+
+.button.secondary {
+  background-color: var(--secondary-color); /* Updated to Dark Gray */
+  color: var(--text-primary);
+}
+
+.button.secondary:hover {
+  background-color: var(--secondary-hover); /* Updated to Darker Gray */
+}
+
+/* --- Filter Section --- */
+.filter-section {
+  max-width: none;
+  /* Retained structural layout settings */
+  margin: 0 0 20px 0;
+  padding: 20px 10px 20px 20px;
+}
+
+.filter-section h3 {
+  color: var(--primary-color); /* Updated to Gold */
+  margin-top: 0;
+}
+
+.filter-description {
+  color: var(--text-secondary);
+}
+
+.filter-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.search-input-container {
+  flex: 1;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color); /* Updated to Gold */
+  outline: none;
+}
+
+.filter-direct-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-label {
+  color: var(--text-secondary);
+}
+
+.dropdown-select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.dropdown-select:focus {
+  border-color: var(--primary-color); /* Updated to Gold */
+  outline: none;
+}
+
+
+/* --- Table Section --- */
+.product-catalog {
+  /* Retained structural layout settings */
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.catalog-header {
+  /* Retained structural layout settings */
+  padding: 20px 10px 0 10px; 
+}
+
+.catalog-header h3 {
+  margin-top: 0;
+}
+
+.catalog-header p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Min width slightly increased back for better spacing */
+  min-width: 950px; 
+}
+
+thead th {
+  background-color: #222; 
+  color: var(--text-secondary);
+  /* Padding slightly increased for spacing */
+  padding: 10px 10px; 
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  /* Header font size retained */
+  font-size: 0.8rem;
+}
+
+thead th:last-child {
+  padding-right: 20px;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background-color: var(--hover-bg);
+}
+
+td {
+  /* Padding slightly increased back for spacing */
+  padding: 12px 10px; 
+  color: var(--text-primary);
+  vertical-align: top;
+  /* Cell font size retained */
+  font-size: 0.85rem;
+  /* 🎯 NEW: Increased spacing between characters */
+  letter-spacing: 0.5px; 
+}
+
+tbody td:last-child {
+  padding-right: 20px;
+}
+
+/* 🎯 Name (2nd column) to one line */
+td:nth-child(2) {
+    white-space: nowrap;
+}
+
+/* 🎯 Tighter styling for Phone (3rd column) and Address (4th column) */
+td:nth-child(3),
+td:nth-child(4) {
+    /* Slightly increased horizontal padding for better spacing */
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.address-cell {
+  max-width: 250px;
+  white-space: normal;
+  word-break: break-word;
+  font-size: 0.8rem;
+  /* Remove letter spacing from wrapping text for better readability */
+  letter-spacing: normal; 
+}
+
+/* Status Spans - Size retained */
+.paid, .pending {
+  padding: 3px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  /* Remove letter spacing from status tags */
+  letter-spacing: normal; 
+}
+
+.paid {
+  /* Gold theme success color (Green) */
+  background-color: rgba(40, 167, 69, 0.2); 
+  color: var(--status-paid);
+}
+
+.pending {
+  /* Gold theme primary color (Gold/Yellow) */
+  background-color: rgba(216, 169, 65, 0.2); 
+  color: var(--status-pending);
+}
+
+/* Verify Button in Table */
+.btn-verify-table {
+  background-color: var(--primary-color); /* Updated to Gold */
+  color: var(--bg-card); /* Should be dark text on gold */
+  padding: 5px 8px; /* Reduced padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem; /* Reduced font size */
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  /* Remove letter spacing from buttons */
+  letter-spacing: normal; 
+}
+
+.btn-verify-table:hover {
+  background-color: var(--primary-hover); /* Updated to Darker Gold */
+}
+
+
+/* ===========================================
+ * --- Modal/Popup Styles (Updated for Single Container Design) ---
+ * =========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  /* This is the single, outer container */
+  background-color: var(--bg-card); 
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 650px; 
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+  transform: scale(1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+}
+
+.modal-header h3 {
+  /* Golden and Bold Heading */
+  margin: 0;
+  color: var(--primary-color); 
+  font-size: 1.8rem;
+  font-weight: 700; 
+}
+
+/* --- Modal Content Container (The single inner box) --- */
+.modal-content {
+  background-color: var(--bg-dark); /* Slightly darker/different background for contrast */
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.modal-content h4 {
+  /* Section headings: Golden and Bold */
+  color: var(--primary-color); 
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  padding-bottom: 5px;
+  border-bottom: none; 
+}
+/* Ensure the first heading doesn't have top margin */
+.modal-content h4:first-of-type {
+  margin-top: 0;
+}
+
+.modal-content p {
+  /* Normal White text */
+  margin: 8px 0;
+  font-size: 1rem;
+  color: var(--text-primary); 
+}
+
+.modal-content strong {
+  /* Labels: White/Light text */
+  color: var(--text-primary); 
+  font-weight: 600; 
+  margin-right: 5px;
+}
+
+/* --- Items List Section --- */
+.modal-items {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  margin-top: 10px;
+}
+
+.modal-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dotted #444; 
+  font-size: 0.95rem;
+}
+
+.modal-item-row:last-child {
+  border-bottom: none;
+}
+
+/* --- Final Amounts (Green Amount Text) --- */
+.modal-content .amount-text {
+  color: var(--status-paid); /* Green color */
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* --- Payment Proof Link --- */
+.view-proof-link {
+  color: var(--primary-color); /* Updated to Gold */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.view-proof-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Modal Actions & Buttons --- */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  font-size: 0.9rem;
+}
+
+/* Verify Button in Modal */
+.btn-verify {
+  background-color: var(--primary-color); /* Updated to Gold */
+  color: var(--bg-card); /* Should be dark text on gold */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-verify:hover {
+  background-color: var(--primary-hover); /* Updated to Darker Gold */
+}
+
+/* Order Status Dropdown in Modal */
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.modal-content select:focus {
+  border-color: var(--primary-color); /* Updated to Gold */
+  outline: none;
+}

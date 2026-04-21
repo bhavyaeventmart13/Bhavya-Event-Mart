@@ -1,0 +1,539 @@
+/* ===========================================
+    src/styles/CategoriesSidebar.css 
+    FINAL V15: Includes Placeholder Fix and Mobile Double-Click Logic Styling
+=========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #111;
+  color: #fff;
+  /* Fix horizontal shift */
+  overflow-x: hidden; 
+}
+
+/* Class added by JavaScript when the sidebar is open (to fix body scroll) */
+.body-no-scroll {
+  overflow: hidden;
+}
+
+/* =====================================================
+    Sidebar Container
+===================================================== */
+.categories-sidebar {
+  width: 200px; /* ⬅️ CRITICAL: WIDTH SET TO 200px */
+  background-color: #1e1e1e;
+  padding: 15px; /* Default padding for desktop */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+}
+
+/* Overlay for mobile */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =====================================================
+    Sidebar Header
+===================================================== */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.logo-container {
+  background-color: #D8A941;
+  border-radius: 8px;
+  padding: 8px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; 
+  margin-bottom: 0;
+}
+
+.logo-icon {
+  font-size: 20px; 
+  color: #1A1A1A;
+}
+
+.header-text h2 {
+  margin: 0;
+  font-size: 0.95rem; 
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 0.7rem; 
+  color: #A0A0A0;
+  white-space: nowrap;
+}
+
+/* =====================================================
+    Search Input
+===================================================== */
+.category-search {
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+.search-input {
+  width: 100%;
+  /* Reduced vertical and horizontal padding to fit placeholder text */
+  padding: 8px 10px; 
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #111;
+  color: #fff;
+  font-size: 0.9rem;
+  
+  box-sizing: border-box; /* Ensures padding and border are included in the 100% width */
+}
+
+.search-input::placeholder {
+  color: #777;
+  /* Ensure the text is cut off cleanly if still too long */
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+    Search Keywords Suggestions 
+===================================================== */
+.search-keywords {
+  margin-bottom: 15px;
+  padding: 8px 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.keyword-title {
+  font-size: 0.8rem;
+  color: #aaa;
+  font-weight: 500;
+  margin: 0;
+  width: 100%; 
+}
+
+.keyword-tag {
+  background-color: #303030;
+  color: #D8A941;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.keyword-tag:hover {
+  background-color: #444;
+}
+
+
+/* =====================================================
+    Menu and Items 
+===================================================== */
+.main-menu {
+  flex-grow: 1;
+  margin-top: 10px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  position: relative;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  padding: 8px; 
+  border-radius: 6px;
+  text-decoration: none;
+  color: #E0E0E0;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap; 
+}
+
+.menu-item .icon {
+  font-size: 1.1rem; 
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.menu-item .text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex-grow: 1;
+
+  /* FIX */
+  white-space: normal;        /* allow wrapping */
+  word-break: break-word;     /* break long words */
+  line-height: 1.3;
+}
+
+.menu-item:hover>a {
+  background-color: #2C2C2C;
+}
+
+/* =====================================================
+    Submenu (Desktop: Fly-out) 
+===================================================== */
+@media (min-width: 769px) {
+  .submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: max-content;
+    z-index: 5000;
+    background-color: #252525;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .menu-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .submenu-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+
+/* Submenu shared styles (for both flyout and accordion) */
+.submenu-column h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #DAA520;
+  margin: 0 0 0.5rem 0;
+  white-space: nowrap;
+}
+
+.submenu-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.submenu-column ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.submenu-column ul::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.submenu-column ul::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+.submenu-item a {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
+  padding-right: 8px;
+}
+
+
+
+.submenu-item a:hover {
+  color: #ffffff;
+}
+
+.submenu-item a.active {
+  color: #DAA520 !important;
+}
+
+/* =====================================================
+   Desktop (769px+)
+===================================================== */
+@media (min-width: 769px) {
+
+  /* Sidebar always on top */
+  .categories-sidebar {
+    width: 200px;
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 9999;
+    overflow: visible !important;
+  }
+
+  /* Desktop Flyout Submenu */
+  .submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: max-content;
+    z-index: 10000;
+    background-color: #252525;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease;
+
+    /* Scroll Fix */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+  }
+
+  .menu-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .submenu::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .submenu::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+  }
+
+  .submenu::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+
+  .sidebar-overlay,
+  .close-btn,
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  .home-layout,
+  .home-main {
+    position: relative;
+    z-index: 1;
+    overflow: visible !important;
+  }
+}
+
+
+/* =====================================================
+   Mobile (768px-)
+===================================================== */
+@media (max-width: 768px) {
+
+  .categories-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100vh;
+    background-color: #1e1e1e;
+    transform: translateX(-100%) !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .3s ease, opacity .3s ease;
+    z-index: 10000 !important;
+    overflow-y: hidden;
+    padding: 15px 10px;
+  }
+
+  .categories-sidebar.open {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10001;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #daa520;
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 10px 15px;
+    cursor: pointer;
+    transition: background .3s ease;
+    z-index: 10001;
+  }
+
+  .sidebar-toggle:hover {
+    background: #e0b94d;
+  }
+
+  /* Mobile accordion */
+  .menu-item {
+    border-bottom: 1px solid #2b2b2b;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-item>a {
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    width: 100%;
+    position: relative;
+  }
+
+  .menu-item>a::after {
+    content: "▸";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .3s;
+    color: #ccc;
+  }
+
+  .menu-item.expanded>a::after {
+    transform: translateY(-50%) rotate(90deg);
+    color: #DAA520;
+  }
+
+  .submenu {
+    position: static;
+    background: transparent;
+    padding: .3rem 0 .6rem .8rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease-out;
+  }
+
+  .menu-item.expanded .submenu {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .main-menu {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+
+/* ============================================
+    Product Search Results
+============================================ */
+.search-results {
+  background: #1a1a1a;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 6px; /* FIX: Consistent padding */
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #333;
+}
+
+.search-product-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-product-item:hover {
+  background: #2c2c2c;
+}
+
+.search-product-item img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.search-product-item span {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.search-category-item,
+.search-subcategory-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.search-category-item:hover,
+.search-subcategory-item:hover {
+  background: #2c2c2c;
+}
+
+.search-category-item .cat-icon {
+  color: #D8A941;
+}
+
+.search-subcategory-item .sub-text {
+  padding-left: 4px;
+  color: #ccc;
+}

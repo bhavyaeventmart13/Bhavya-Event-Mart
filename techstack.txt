@@ -1,0 +1,39 @@
+TOOLS USED (Pankaj Cloth System)
+💻 Backend & Frontend
+Node.js
+Express.js
+React (Vite)
+🗄️ Database
+MongoDB Atlas
+☁️ File Storage / CDN
+Google Cloud Storage
+Cloudflare
+🚀 Hosting / Deployment
+Render
+📧 Email Service
+Brevo
+📲 Messaging / Communication
+Twilio
+Meta
+📱 App Deployment
+Google Play Console
+Apple App Store Connect
+⏱️ Monitoring
+UptimeRobot
+🤖 AI / Automation
+OpenAI
+🧪 Development Tools
+MongoDB Compass
+Postman
+Visual Studio Code
+
+If you want next, I’ll give you:
+👉 exact clone checklist (what to change vs keep) step-by-step without breaking anything.
+
+
+
+mongodump --uri="mongodb+srv://shravan12_db_admin:Sa12@pankaj-cloth-webapp.fkgkzsv.mongodb.net/?retryWrites=true&w=majority&appName=Pankaj-Cloth-WebApp" \
+--collection=products \
+--collection=categories \
+--collection=homecontents \
+--out=backups/db-backup

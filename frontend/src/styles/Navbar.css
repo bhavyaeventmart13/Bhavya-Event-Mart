@@ -1,0 +1,691 @@
+/* ============================================================
+    GLOBAL BASE STYLING
+============================================================ */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+body.popup-active {
+    overflow: hidden;
+}
+
+/* ============================================================
+    NAVBAR CONTAINER
+============================================================ */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: #121212;
+    color: #d1d1d1;
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+    box-shadow: 0 1px 4px rgba(255, 215, 0, 0.1);
+}
+
+/* ============================================================
+    LOGO
+============================================================ */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-main {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ============================================================
+    NAVIGATION LINKS (Desktop)
+============================================================ */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.navbar-links a:hover {
+    color: #daa520;
+}
+
+/* ============================================================
+    PROFILE SECTION
+============================================================ */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-icon {
+    cursor: pointer;
+    color: #ffffff; /* 🔥 darker gray */
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.profile-icon:hover {
+    color: #daa520; /* gold on hover */
+    transform: scale(1.05);
+}
+
+
+/* ============================================================
+    PROFILE DROPDOWN
+============================================================ */
+.profile-dropdown {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: #1b1b1b;
+    border: 1px solid #333;
+    padding: 15px;
+    width: 200px;
+    /* Reduced width */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Reduced gap */
+    animation: fadeIn 0.25s ease;
+    z-index: 4000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.profile-dropdown button {
+    border: none;
+    padding: 8px;
+    /* Reduced padding */
+    background: #333;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.profile-dropdown button:hover {
+    background: #daa520;
+    color: #000;
+}
+
+/* ============================================================
+    AUTH POPUP (LOGIN / REGISTER / FORGOT) - SLIGHTLY SMALLER
+============================================================ */
+.auth-popup-wrapper {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    animation: fadeIn 0.35s ease;
+}
+
+.auth-popup {
+    background: #0d0d0d;
+    border: 1px solid #363636;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    /* Reduced padding */
+    width: 300px;
+    /* Reduced max width */
+    max-width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+    animation: slideDown 0.32s ease-out;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Reduced gap */
+    position: relative;
+}
+
+/* Header/Title */
+.auth-popup-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.auth-popup-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    /* Slightly smaller font */
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Close Button (X) */
+.popup-close-btn {
+    background: none;
+    color: #ccc;
+    border: none;
+    font-size: 1.4rem;
+    /* Slightly smaller font */
+    cursor: pointer;
+    transition: 0.25s;
+    position: absolute;
+    top: 10px;
+    /* Adjusted position */
+    right: 10px;
+    /* Adjusted position */
+    padding: 5px;
+    line-height: 1;
+}
+
+.popup-close-btn:hover {
+    color: #daa520;
+}
+
+/* Inputs */
+.auth-popup input {
+    width: 100%;
+    background: #1e1e1e;
+    border: 1px solid #363636;
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    /* Reduced padding */
+    color: #fff;
+    font-size: 0.95rem;
+    /* Slightly smaller font */
+    box-sizing: border-box;
+    margin-bottom: 3px;
+    /* Reduced margin */
+}
+
+.auth-popup input:focus {
+    outline: none;
+    border-color: #daa520;
+    box-shadow: 0 0 4px rgba(218, 165, 32, 0.6);
+}
+
+/* Primary Login Button */
+.login-primary-btn {
+    width: 100%;
+    padding: 0.8rem;
+    /* Reduced padding */
+    background: #daa520;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: 8px;
+    /* Reduced margin */
+}
+
+.login-primary-btn:hover {
+    background: #f4d161;
+}
+
+/* Primary buttons for Register/Send OTP/Reset (Fallbacks) */
+.auth-popup>button:not(.popup-close-btn) {
+    width: 100%;
+    padding: 0.8rem;
+    /* Reduced padding */
+    background: #daa520;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: 8px;
+    /* Reduced margin */
+}
+
+.auth-popup>button:not(.popup-close-btn):hover {
+    background: #f4d161;
+}
+
+
+/* Container for 'Create Account' and 'Forgot Password' buttons (Login View) */
+.login-button-group {
+    display: flex;
+    gap: 8px;
+    /* Reduced gap */
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.login-button-group button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 0.8rem;
+    /* Slightly smaller font */
+    cursor: pointer;
+    padding: 5px;
+    transition: 0.25s;
+    font-weight: 500;
+}
+
+.login-button-group button:hover {
+    color: #fff;
+}
+
+/* Auth Links (for Register and Forgot password views) */
+.auth-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.auth-links button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 0.8rem;
+    /* Slightly smaller font */
+    cursor: pointer;
+    padding: 5px;
+    transition: 0.25s;
+    font-weight: 500;
+}
+
+.auth-links button:hover {
+    color: #fff;
+}
+
+
+/* ============================================================
+    CART ICON
+============================================================ */
+.cart-icon-container {
+    position: relative;
+    cursor: pointer;
+    color: #f5f5f5;
+    transition: 0.2s;
+}
+
+.cart-icon-container:hover {
+    color: #daa520;
+}
+
+.cart-icon {
+    font-size: 1.25rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #daa520;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================
+    MOBILE NAVBAR
+============================================================ */
+.menu-toggle {
+    display: none;
+    /* Hidden by default on desktop */
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0.6rem 1rem;
+        height: 55px;
+        position: relative;
+        justify-content: space-between;
+    }
+
+    .logo-image {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo-main {
+        font-size: 1rem;
+    }
+
+    /* Hamburger Button (Centered) */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        /* Centers the element perfectly */
+        font-size: 28px;
+        background: none;
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+    /* Navigation Links (Mobile Menu) */
+    .navbar-links {
+        display: none;
+        /* Hidden by default */
+        position: absolute;
+        top: 55px;
+        /* Below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #121212;
+        flex-direction: column;
+        padding: 5px 0;
+        /* Reduced padding */
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
+        z-index: 2000;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        /* Show when active */
+    }
+
+    .navbar-links a {
+        padding: 8px 1rem;
+        /* Reduced padding */
+        border-bottom: 1px solid #1e1e1e;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.95rem;
+        /* Slightly smaller font */
+    }
+
+    .navbar-links a:last-child {
+        border-bottom: none;
+    }
+
+    .auth-popup {
+        width: 85vw;
+        /* Slightly smaller on mobile */
+    }
+}
+
+/* ============================================================
+    ANIMATIONS
+============================================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* SEARCH ICON (BASE) */
+.search-icon-container {
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 16px;
+  color: white;
+}
+
+
+
+
+.navbar-search-input {
+  background: #000;
+  border: 1px solid #444;
+  color: #fff;
+
+  padding: 8px 10px;
+  width: 240px;
+  border-radius: 6px;
+  outline: none;
+
+  font-size: 16px;          /* ✅ KEY FIX */
+  line-height: 1.4;
+}
+
+
+.navbar-search-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}/* SEARCH POPUP WRAPPER */
+.navbar-search-wrapper {
+  position: absolute;
+  top: 70px;
+  right: 16px;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 99999;
+}
+
+
+
+/* SEARCH DROPDOWN */
+.navbar-search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100000;
+}
+
+/* SEARCH RESULT ITEM */
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+}
+
+.search-item:hover {
+  background: #1c1c1c;
+}
+
+.search-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.search-item span {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* SEARCH EMPTY STATE */
+.search-empty {
+  padding: 12px;
+  color: #aaa;
+  text-align: center;
+}
+
+
+/* ===============================
+   APP DOWNLOAD POPUP
+================================ */
+
+.app-download-btn {
+  margin-right: 12px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.app-download-btn:hover {
+  text-decoration: underline;
+}
+
+
+
+
+.app-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-popup {
+  background: #111;
+  color: #fff;
+  width: 90%;
+  max-width: 360px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.app-popup h3 {
+  color: #daa520;
+  margin-bottom: 10px;
+}
+
+.app-popup p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.app-popup-download {
+  display: block;
+  background: #daa520;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.app-popup-download:hover {
+  background: #f1c232;
+}
+
+.app-popup-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+/* =====================================================
+   MOBILE ICON SIZE REDUCTION (FINAL FIX)
+===================================================== */
+@media (max-width: 768px) {
+
+  /* Right section spacing */
+  .navbar-right {
+    gap: 5px;
+  }
+
+  /* Install App button */
+  .app-download-btn {
+   font-size: 16px;
+    margin-right: 2px;
+  }
+
+  /* Search icon */
+  .search-icon-container {
+    font-size: 15px;
+    margin-right: 0px;
+  }
+
+  /* Cart icon */
+  .cart-icon {
+    font-size: 1rem;
+  }
+
+  .cart-count {
+    width: 14px;
+    height: 14px;
+    font-size: 0.6rem;
+    top: -5px;
+    right: -6px;
+  }
+
+  /* Profile icon */
+  .profile-icon svg {
+    width: 20px;
+    height: 18px;
+  }
+}
+.upload-icon-container {
+  margin-right: 2px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.upload-icon-container:hover {
+  color: #facc15;
+}

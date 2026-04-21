@@ -1,0 +1,96 @@
+/* 🌑 GLOBAL DARK THEME */
+body {
+  background-color: #0f0f0f;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Container */
+.quick-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Headings */
+.quick-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffd700;
+}
+
+/* Inputs */
+.quick-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: white;
+}
+
+/* Items Row */
+.item-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.item-row input {
+  flex: 1;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-add {
+  background: #333;
+  color: #ffd700;
+}
+
+.btn-save {
+  background: #ffd700;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Total */
+.total {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #00ffcc;
+}
+
+/* Admin Cards */
+.order-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.order-card h3 {
+  color: #ffd700;
+}
+
+.order-card ul {
+  padding-left: 15px;
+}
+
+.order-card li {
+  font-size: 14px;
+  margin-bottom: 4px;
+}

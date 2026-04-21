@@ -1,0 +1,72 @@
+/* ===============================
+   PAGE WITH SIDEBAR LAYOUT
+================================ */
+.page-with-sidebar {
+  display: flex;
+  background-color: var(--bg-main);
+  min-height: 100vh;
+}
+
+/* ===============================
+   BLOG LIST PAGE
+================================ */
+.blog-page {
+  flex: 1;
+  background-color: var(--bg-main);
+  /* Remove internal padding to let the wrapper handle margins */
+  padding: 20px 0; 
+  color: var(--text-primary);
+}
+
+/* Updated Wrapper for 10px margins on both sides */
+.blog-content-wrapper {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+
+.blog-heading {
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-left: 5px; /* Slight offset for text alignment */
+}
+
+/* ===============================
+   BLOG FULL ARTICLE
+================================ */
+.blog-full-card {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.blog-cover {
+  width: 100%;
+  height: 320px; 
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.blog-title {
+  font-size: 24px;
+  color: var(--gold);
+  line-height: 1.3;
+  margin-bottom: 15px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.blog-text {
+  width: 100%;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  text-align: justify; /* Keeps the right edge clean and full-length */
+  margin-bottom: 10px;
+}
