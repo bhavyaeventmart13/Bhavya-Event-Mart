@@ -38,9 +38,9 @@ const app = express();
 // ==============================
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://https://bhavya-event-mart.onrender.com",
-  "https://pankajcloth.com",
-  "https://www.pankajcloth.com",
+  "https://bhavya-event-mart-frontend.onrender.com", // ✅ FRONTEND
+  "https://bhavya-event-mart.onrender.com", // optional
+
 ];
 
 app.use(
