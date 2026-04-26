@@ -99,7 +99,7 @@ const scrollKey = location.state?.scrollKey;
         }
 
         if (!found) {
-          const res = await fetch(`https://pankaj-cloth-webapp.onrender.com/api/products/${productId}`);
+          const res = await fetch(`https://https://bhavya-event-mart.onrender.com/api/products/${productId}`);
           const all = await res.json();
           found = all;
         }

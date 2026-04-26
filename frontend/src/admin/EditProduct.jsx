@@ -152,7 +152,7 @@ const handleSubmit = async (e) => {
     }
 
     const res = await fetch(
-      `https://pankaj-cloth-webapp.onrender.com/api/products/${product._id}`,
+      `https://https://bhavya-event-mart.onrender.com/api/products/${product._id}`,
       {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },

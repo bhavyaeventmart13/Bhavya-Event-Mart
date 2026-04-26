@@ -92,7 +92,7 @@ const [editValue, setEditValue] = useState("");
     const fetchCategories = async () => {
       try {
         const res = await fetch(
-          "https://pankaj-cloth-webapp.onrender.com/api/categories"
+          "https://https://bhavya-event-mart.onrender.com/api/categories"
         );
         const data = await res.json();
         setCategoryData(
@@ -207,7 +207,7 @@ const [editValue, setEditValue] = useState("");
     try {
       const catObj = categoryData.find((c) => c._id === catId);
       const resCheck = await fetch(
-        `https://pankaj-cloth-webapp.onrender.com/api/products/check-subcategory?category=${encodeURIComponent(
+        `https://https://bhavya-event-mart.onrender.com/api/products/check-subcategory?category=${encodeURIComponent(
           catObj.name
         )}&subcategory=${encodeURIComponent(subName)}`
       );
@@ -225,7 +225,7 @@ const [editValue, setEditValue] = useState("");
         return;
 
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/categories/delete-subcategory",
+        "https://https://bhavya-event-mart.onrender.com/api/categories/delete-subcategory",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -268,7 +268,7 @@ const [editValue, setEditValue] = useState("");
       }
 
       const resCheck = await fetch(
-        `https://pankaj-cloth-webapp.onrender.com/api/products/check-category?category=${encodeURIComponent(
+        `https://https://bhavya-event-mart.onrender.com/api/products/check-category?category=${encodeURIComponent(
           category.name
         )}`
       );
@@ -286,7 +286,7 @@ const [editValue, setEditValue] = useState("");
         return;
 
       const res = await fetch(
-        `https://pankaj-cloth-webapp.onrender.com/api/categories/${encodeURIComponent(
+        `https://https://bhavya-event-mart.onrender.com/api/categories/${encodeURIComponent(
           category.name
         )}`,
         { method: "DELETE" }
@@ -312,7 +312,7 @@ const [editValue, setEditValue] = useState("");
 }));
     try {
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/categories/updateAll",
+        "https://https://bhavya-event-mart.onrender.com/api/categories/updateAll",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -445,7 +445,7 @@ const saveEdit = (catId, subId = null) => {
     if (!aiPrompt.trim()) return alert("Please enter a prompt for AI!");
     try {
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/ai/generate-description",
+        "https://https://bhavya-event-mart.onrender.com/api/ai/generate-description",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -570,7 +570,7 @@ const saveEdit = (catId, subId = null) => {
       }
 
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/products/add",
+        "https://https://bhavya-event-mart.onrender.com/api/products/add",
         {
           method: "POST",
           headers: {

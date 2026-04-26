@@ -71,7 +71,7 @@ const Product = () => {
         await fetchAllProductsAdmin();
 
         const res = await fetch(
-          "https://pankaj-cloth-webapp.onrender.com/api/categories"
+          "https://https://bhavya-event-mart.onrender.com/api/categories"
         );
         const data = await res.json();
         if (res.ok) {
@@ -210,7 +210,7 @@ const Product = () => {
 
     try {
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/categories/reorder",
+        "https://https://bhavya-event-mart.onrender.com/api/categories/reorder",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -236,7 +236,7 @@ const Product = () => {
 
     try {
       const res = await fetch(
-        "https://pankaj-cloth-webapp.onrender.com/api/categories/reorder-subcategories",
+        "https://https://bhavya-event-mart.onrender.com/api/categories/reorder-subcategories",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -253,7 +253,7 @@ const Product = () => {
 
         // ✅ REFRESH CATEGORIES
         const updated = await fetch(
-          "https://pankaj-cloth-webapp.onrender.com/api/categories"
+          "https://https://bhavya-event-mart.onrender.com/api/categories"
         );
         const data = await updated.json();
 

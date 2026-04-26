@@ -18,7 +18,7 @@ const CategoryGrid = ({ categoryName, subcategoryName }) => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        let url = `https://pankaj-cloth-webapp.onrender.com/api/products?category=${encodeURIComponent(
+        let url = `https://https://bhavya-event-mart.onrender.com/api/products?category=${encodeURIComponent(
           categoryName
         )}`;
 

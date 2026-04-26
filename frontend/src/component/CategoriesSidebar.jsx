@@ -89,7 +89,7 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
         }
 
         const res = await fetch(
-          "https://pankaj-cloth-webapp.onrender.com/api/categories"
+          "https://https://bhavya-event-mart.onrender.com/api/categories"
         );
 
         if (!res.ok) throw new Error();

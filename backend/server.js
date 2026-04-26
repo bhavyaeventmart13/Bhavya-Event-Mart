@@ -38,7 +38,7 @@ const app = express();
 // ==============================
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://pankaj-cloth-webapp.onrender.com",
+  "https://https://bhavya-event-mart.onrender.com",
   "https://pankajcloth.com",
   "https://www.pankajcloth.com",
 ];
