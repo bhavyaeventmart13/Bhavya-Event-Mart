@@ -20,7 +20,7 @@ const AddPopup = ({ isOpen, onClose }) => {
 
   const fetchPopups = async () => {
     try {
-      const res = await fetch("https://https://bhavya-event-mart.onrender.com/api/popups");
+      const res = await fetch("https://bhavya-event-mart.onrender.com/api/popups");
       const data = await res.json();
       if (res.ok) setPopups(Array.isArray(data) ? data : [data]);
     } catch (err) {
@@ -57,7 +57,7 @@ const AddPopup = ({ isOpen, onClose }) => {
         formData.append("imageUrl", imageUrl);
       }
 
-      const res = await fetch("https://https://bhavya-event-mart.onrender.com/api/popups", {
+      const res = await fetch("https://bhavya-event-mart.onrender.com/api/popups", {
         method: "POST",
         body: formData,
       });
@@ -78,7 +78,7 @@ const AddPopup = ({ isOpen, onClose }) => {
   const handleDelete = async (id) => {
     if (!window.confirm("🗑️ Delete this offer?")) return;
     try {
-      const res = await fetch(`https://https://bhavya-event-mart.onrender.com/api/popups/${id}`, { method: "DELETE" });
+      const res = await fetch(`https://bhavya-event-mart.onrender.com/api/popups/${id}`, { method: "DELETE" });
       if (res.ok) setPopups((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);

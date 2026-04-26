@@ -68,7 +68,7 @@ const [uploadNote, setUploadNote] = useState("");
   const [showAppPopup, setShowAppPopup] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const API_BASE = import.meta.env.VITE_API_URL || "https://https://bhavya-event-mart.onrender.com";
+  const API_BASE = import.meta.env.VITE_API_URL || "https://bhavya-event-mart.onrender.com";
 
   // ================== 2️⃣ LOCAL SEARCH LOGIC (FOR CATEGORIES) ==================
   const search = searchTerm.toLowerCase();

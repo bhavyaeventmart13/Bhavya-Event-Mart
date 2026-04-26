@@ -11,7 +11,7 @@ const OfferPopup = () => {
     const fetchPopups = async () => {
       try {
         const res = await fetch(
-          "https://https://bhavya-event-mart.onrender.com/api/popups"
+          "https://bhavya-event-mart.onrender.com/api/popups"
         );
         const data = await res.json();
 

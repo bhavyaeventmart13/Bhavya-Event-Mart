@@ -48,7 +48,7 @@ export const ProductProvider = ({ children }) => {
   // -------------------------------
   const API_BASE =
     import.meta.env.VITE_API_URL ||
-    "https://https://bhavya-event-mart.onrender.com";
+    "https://bhavya-event-mart.onrender.com";
 
   // -------------------------------
   // SAFE JSON
