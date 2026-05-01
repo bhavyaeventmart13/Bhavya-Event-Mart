@@ -37,34 +37,15 @@ const Sidebar = () => {
       icon: <FiPackage />,
       path: "/admin/products",
     },
-    {
-      name: "Customer Review",
-      icon: <FiImage />,
-      path: "/admin/customer-requests",
-    },
+   
     {
       name: "Orders",
       icon: <FiFileText />,
       path: "/admin/orders",
     },
-    {
-      name: "Quick Orders",
-      icon: <FiClipboard />,
-      path: "/admin/quick-orders",
-    },
+  
 
-    // ✅ NEW TASK DASHBOARD
-    {
-      name: "Task Dashboard",
-      icon: <FiCheckSquare />,
-      path: "/admin/tasks",
-    },
-
-    {
-      name: "Communication",
-      icon: <FiMessageSquare />,
-      path: "/admin/communication",
-    },
+    
     {
       name: "Analytics",
       icon: <IoBarChartOutline />,
