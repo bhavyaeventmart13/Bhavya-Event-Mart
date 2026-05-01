@@ -13,25 +13,29 @@ const tokenFor = (user) =>
   );
 
 // ==============================
-// REGISTER (FIXED)
+// REGISTER (FINAL FIXED)
 // ==============================
 export const register = async (req, res) => {
   try {
     const { name, phone, email, address, password } = req.body;
 
+    // ✅ Basic validation
     if (!name || (!phone && !email) || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    const exists = await User.findOne({
-      $or: [{ phone }, { email }],
-    });
+    // ✅ SAFE QUERY (FIXED)
+    const query = [];
+    if (phone) query.push({ phone });
+    if (email) query.push({ email });
+
+    const exists = await User.findOne({ $or: query });
 
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // 🔥 FIX: force customer role (NO injection)
+    // ✅ CREATE USER (FORCE CUSTOMER)
     const user = await User.create({
       name,
       phone,
@@ -54,7 +58,11 @@ export const register = async (req, res) => {
     });
   } catch (err) {
     console.error("❌ Register Error:", err);
-    return res.status(500).json({ message: "Server error" });
+
+    // ✅ RETURN REAL ERROR (IMPORTANT)
+    return res.status(400).json({
+      message: err.message || "Registration failed",
+    });
   }
 };
 
