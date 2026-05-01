@@ -13,11 +13,11 @@ const tokenFor = (user) =>
   );
 
 // ==============================
-// REGISTER
+// REGISTER (FIXED)
 // ==============================
 export const register = async (req, res) => {
   try {
-    const { name, phone, email, address, password, role } = req.body;
+    const { name, phone, email, address, password } = req.body;
 
     if (!name || (!phone && !email) || !password) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -31,13 +31,15 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    // 🔥 FIX: force customer role (NO injection)
     const user = await User.create({
       name,
       phone,
       email,
       address,
       password,
-      role: role || "customer",
+      role: "customer",
+      createdBy: null,
     });
 
     return res.status(201).json({
@@ -57,7 +59,7 @@ export const register = async (req, res) => {
 };
 
 // ==============================
-// LOGIN (EMAIL + PHONE)
+// LOGIN
 // ==============================
 export const login = async (req, res) => {
   try {
@@ -125,8 +127,6 @@ export const profile = async (req, res) => {
 // ==============================
 export const forgot = async (req, res) => {
   try {
-    console.log("BODY RECEIVED:", req.body);
-
     const { identifier } = req.body;
 
     if (!identifier || identifier.trim() === "") {

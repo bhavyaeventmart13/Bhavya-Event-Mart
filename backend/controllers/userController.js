@@ -1,11 +1,11 @@
 import User from "../models/User.js";
 
 /* ======================================================
-   🟢 ADMIN: GET ALL STAFF USERS
+   🟢 ADMIN: GET ALL NON-ADMIN USERS
 ====================================================== */
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({ role: "staff" })
+    const users = await User.find({ role: { $ne: "admin" } }) // 🔥 FIXED
       .select("name phone address email role createdAt")
       .sort({ createdAt: -1 })
       .lean();
@@ -24,24 +24,26 @@ export const getAllUsers = async (req, res) => {
 };
 
 /* ======================================================
-   🟢 ADMIN: UPDATE USER (STAFF)
+   🟢 ADMIN: UPDATE USER (SAFE)
 ====================================================== */
 export const updateUser = async (req, res) => {
   try {
-    const { name, phone, email, address, role } = req.body;
+    const { name, phone, email, address } = req.body;
+
+    // 🔥 SAFE UPDATE (no role change allowed)
+    const updateData = {
+      ...(name && { name }),
+      ...(phone && { phone }),
+      ...(email && { email }),
+      ...(address && { address }),
+    };
 
     const user = await User.findOneAndUpdate(
-      { _id: req.params.id, role: "staff" },
-      {
-        name,
-        phone,
-        email,
-        address,
-        role: role || "staff",
-      },
+      { _id: req.params.id, role: { $ne: "admin" } }, // 🔥 FIXED
+      updateData,
       {
         new: true,
-        runValidators: true, // ✅ ensure validation
+        runValidators: true,
       }
     )
       .select("name phone email address role createdAt")
@@ -50,7 +52,7 @@ export const updateUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User not found or not a staff",
+        message: "User not found",
       });
     }
 
@@ -68,19 +70,19 @@ export const updateUser = async (req, res) => {
 };
 
 /* ======================================================
-   🔴 ADMIN: DELETE USER (STAFF)
+   🔴 ADMIN: DELETE USER (SAFE)
 ====================================================== */
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findOneAndDelete({
       _id: req.params.id,
-      role: "staff",
+      role: { $ne: "admin" }, // 🔥 FIXED
     });
 
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: "User not found or not a staff",
+        message: "User not found",
       });
     }
 
