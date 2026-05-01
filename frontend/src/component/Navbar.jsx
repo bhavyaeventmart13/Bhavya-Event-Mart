@@ -4,7 +4,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
-import logoImage from "../assets/finallogo.jpg";
+import logoImage from "../assets/bhayalogo.png";
 
 import { UserContext } from "../context/UserContext"; 
 import { CartContext } from "../context/CartContext.jsx";
@@ -304,7 +304,7 @@ const handleUpload = async () => {
       <div className="logo">
         <Link to="/" className="logo-link">
           <img src={logoImage} alt="Logo" className="logo-image" />
-          <span className="logo-main">Pankaj Cloth</span>
+          <span className="logo-main">Bhaya Event Mart</span>
         </Link>
       </div>
 
