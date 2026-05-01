@@ -35,22 +35,25 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   }, []);
 
-  // ================= REGISTER (✅ FIXED) =================
+  // ================= REGISTER =================
   const register = useCallback(
     async (payload) => {
       try {
         setLoading(true);
 
         const { data } = await axios.post(
-          `${API_BASE}/api/auth/register-public`, // ✅ FIXED ROUTE
-          payload // ❌ NO TOKEN HERE
+          `${API_BASE}/api/auth/register-public`,
+          payload
         );
 
         return { success: true, data };
       } catch (err) {
         return {
           success: false,
-          message: err?.response?.data?.message || err.message,
+          message:
+            err?.response?.data?.message ||
+            err?.message ||
+            "Registration failed",
         };
       } finally {
         setLoading(false);
@@ -59,7 +62,7 @@ export const UserProvider = ({ children }) => {
     [API_BASE]
   );
 
-  // ================= LOGIN (✅ FIXED) =================
+  // ================= LOGIN =================
   const login = useCallback(
     async (payload) => {
       try {
@@ -71,7 +74,7 @@ export const UserProvider = ({ children }) => {
         };
 
         const { data } = await axios.post(
-          `${API_BASE}/api/auth/login`, // ✅ FIXED ROUTE
+          `${API_BASE}/api/auth/login`,
           loginPayload
         );
 
@@ -98,7 +101,10 @@ export const UserProvider = ({ children }) => {
       } catch (err) {
         return {
           success: false,
-          message: err?.response?.data?.message || err.message,
+          message:
+            err?.response?.data?.message ||
+            err?.message ||
+            "Login failed",
         };
       } finally {
         setLoading(false);
@@ -114,28 +120,28 @@ export const UserProvider = ({ children }) => {
 
     try {
       const { data } = await axios.get(
-        `${API_BASE}/api/user/profile`,
+        `${API_BASE}/api/auth/profile`, // ✅ FIXED
         {
           headers: authHeader(),
         }
       );
 
-      const userData = data.user;
+      if (!data) return;
 
       const updatedUser = {
         ...(user || {}),
-        id: userData._id,
-        name: userData.name,
-        phone: userData.phone,
-        email: userData.email,
-        address: userData.address,
-        role: userData.role || "customer",
+        id: data._id || data.id,
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        address: data.address,
+        role: data.role || "customer",
         token,
       };
 
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUser(updatedUser);
-    } catch (err) {
+    } catch {
       logout();
     }
   }, [API_BASE, authHeader, logout, user]);
