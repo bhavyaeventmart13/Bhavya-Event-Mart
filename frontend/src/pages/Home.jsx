@@ -100,7 +100,7 @@ const getImg = (p) =>
   const [bestSellers, setBestSellers] = useState([]);
   const [homeCategories, setHomeCategories] = useState([]);
   const [homeVideos, setHomeVideos] = useState([]);
-
+const [allCategories, setAllCategories] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -120,6 +120,25 @@ const getImg = (p) =>
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/categories`);
+      const data = await res.json();
+
+      const formatted = data.map((cat) => ({
+        name: cat.name,
+        thumbnail: cat.thumbnail || "",
+      }));
+
+      setAllCategories(formatted);
+    } catch (err) {
+      console.error("❌ Category fetch error:", err);
+    }
+  };
+
+  fetchCategories();
+}, []);
 
   // ---------------- PREFETCH ----------------
   useEffect(() => {
@@ -224,12 +243,14 @@ const getImg = (p) =>
             <div className="hero-inner">
               <div className="hero-content">
                 <h1 className="hero-title">
-                  Bhavya Event Mart
+                  Pankaj Cloth & Wedding Tent Industry
                 </h1>
                 <p className="hero-tagline">
-                 HOUSE OF EVENT SUPPLY
+                  Supplying Excellence For Every Celebration
                 </p>
-                
+                <p className="hero-manufacturer">
+                  Manufacturer & Importer | Since 1975
+                </p>
               </div>
             </div>
           </div>
@@ -278,7 +299,7 @@ const getImg = (p) =>
             <div className="grid-section">
               <ReadyMade bestSellers={bestSellers} />
               <hr className="section-divider" />
-              <HomePageCategories categories={homeCategories} />
+             <HomePageCategories categories={allCategories} />
             </div>
           
 
@@ -309,9 +330,9 @@ const getImg = (p) =>
 // ======================================================
 const ContactSection = () => {
   const address =
-    "Bhavya Event Mart plot No: 142, Cuttack Road, Opposite of Bhagwan Tower, Laxmisagar, Bhubaneswar - 751006";
+    "Pankaj cloth & wedding tent industry (Warehouse), Beside Chattarpur Farms, Tarodi, Nagpur, Maharashtra 440035";
 
-  const mapsUrl = `https://maps.app.goo.gl/pSk8vQGadn7PnZxx8?g_st=aw${encodeURIComponent(
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     address
   )}`;
 

@@ -117,18 +117,31 @@ export const profile = async (req, res) => {
 };
 
 // ==============================
-// FORGOT PASSWORD
+// FORGOT PASSWORD (EMAIL + PHONE)
 // ==============================
 export const forgot = async (req, res) => {
   try {
-    const { phone } = req.body;
+    const { identifier } = req.body;
 
-    const user = await User.findOne({ phone });
+    if (!identifier) {
+      return res.status(400).json({ message: "Identifier required" });
+    }
+
+    const isEmail = identifier.includes("@");
+
+    const user = await User.findOne(
+      isEmail ? { email: identifier } : { phone: identifier }
+    );
+
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    await sendOTP(phone);
+    await sendOTP(identifier);
 
-    return res.json({ message: "OTP sent" });
+    return res.json({
+      message: isEmail
+        ? "OTP sent to email"
+        : "OTP sent (check server console)",
+    });
   } catch (err) {
     console.error("Forgot Error:", err);
     return res.status(500).json({ message: "Server error" });
@@ -136,13 +149,14 @@ export const forgot = async (req, res) => {
 };
 
 // ==============================
-// VERIFY OTP
+// VERIFY OTP (EMAIL + PHONE)
 // ==============================
 export const verifyOtp = async (req, res) => {
   try {
-    const { phone, otp } = req.body;
+    const { identifier, otp } = req.body;
 
-    const ok = await verifyOTPCode(phone, otp);
+    const ok = await verifyOTPCode(identifier, otp);
+
     if (!ok) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
@@ -155,18 +169,23 @@ export const verifyOtp = async (req, res) => {
 };
 
 // ==============================
-// RESET PASSWORD
+// RESET PASSWORD (EMAIL + PHONE)
 // ==============================
 export const resetPassword = async (req, res) => {
   try {
-    const { phone, otp, newPassword } = req.body;
+    const { identifier, otp, newPassword } = req.body;
 
-    const ok = await verifyOTPCode(phone, otp);
+    const ok = await verifyOTPCode(identifier, otp);
     if (!ok) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
-    const user = await User.findOne({ phone });
+    const isEmail = identifier.includes("@");
+
+    const user = await User.findOne(
+      isEmail ? { email: identifier } : { phone: identifier }
+    );
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

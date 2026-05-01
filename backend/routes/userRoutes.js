@@ -25,7 +25,7 @@ const generateToken = (id) =>
 /* ======================================================
    🟢 REGISTER USER (FIXED FOR STAFF CREATION)
 ====================================================== */
-router.post("/register", protect, adminMiddleware, async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const { name, phone, email, password, address, role } = req.body;
 
