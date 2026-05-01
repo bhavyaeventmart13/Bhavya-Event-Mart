@@ -1,10 +1,9 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import { sendOTP, verifyOTPCode } from "../services/otpService.js";
 
 // ==============================
-// TOKEN GENERATOR (ROLE BASED)
+// TOKEN GENERATOR
 // ==============================
 const tokenFor = (user) =>
   jwt.sign(
@@ -20,15 +19,14 @@ export const register = async (req, res) => {
   try {
     const { name, phone, email, address, password, role } = req.body;
 
-    if ((!phone && !email) || !password || !name) {
+    if (!name || (!phone && !email) || !password) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    const query = [];
-    if (phone) query.push({ phone });
-    if (email) query.push({ email });
+    const exists = await User.findOne({
+      $or: [{ phone }, { email }],
+    });
 
-    const exists = query.length ? await User.findOne({ $or: query }) : null;
     if (exists) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -43,6 +41,7 @@ export const register = async (req, res) => {
     });
 
     return res.status(201).json({
+      success: true,
       message: "User registered successfully",
       id: user._id,
       name: user.name,
@@ -52,13 +51,13 @@ export const register = async (req, res) => {
       token: tokenFor(user),
     });
   } catch (err) {
-    console.error("Register Error:", err);
+    console.error("❌ Register Error:", err);
     return res.status(500).json({ message: "Server error" });
   }
 };
 
 // ==============================
-// LOGIN
+// LOGIN (EMAIL + PHONE)
 // ==============================
 export const login = async (req, res) => {
   try {
@@ -68,10 +67,11 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Missing credentials" });
     }
 
-    const isEmail = identifier.includes("@");
+    const cleanIdentifier = identifier.trim();
+    const isEmail = cleanIdentifier.includes("@");
 
     const user = await User.findOne(
-      isEmail ? { email: identifier } : { phone: identifier }
+      isEmail ? { email: cleanIdentifier } : { phone: cleanIdentifier }
     ).select("+password");
 
     if (!user) {
@@ -79,11 +79,13 @@ export const login = async (req, res) => {
     }
 
     const ok = await user.matchPassword(password);
+
     if (!ok) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     return res.json({
+      success: true,
       id: user._id,
       name: user.name,
       phone: user.phone,
@@ -93,7 +95,7 @@ export const login = async (req, res) => {
       token: tokenFor(user),
     });
   } catch (err) {
-    console.error("Login Error:", err);
+    console.error("❌ Login Error:", err);
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -107,83 +109,103 @@ export const profile = async (req, res) => {
       "_id name phone email address role"
     );
 
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    return res.json(user);
+    return res.json({ user });
   } catch (err) {
-    console.error("Profile Error:", err);
+    console.error("❌ Profile Error:", err);
     return res.status(500).json({ message: "Server error" });
   }
 };
 
 // ==============================
-// FORGOT PASSWORD (EMAIL + PHONE)
+// FORGOT PASSWORD
 // ==============================
 export const forgot = async (req, res) => {
   try {
+    console.log("BODY RECEIVED:", req.body);
+
     const { identifier } = req.body;
 
-    if (!identifier) {
+    if (!identifier || identifier.trim() === "") {
       return res.status(400).json({ message: "Identifier required" });
     }
 
-    const isEmail = identifier.includes("@");
+    const cleanIdentifier = identifier.trim();
+    const isEmail = cleanIdentifier.includes("@");
 
     const user = await User.findOne(
-      isEmail ? { email: identifier } : { phone: identifier }
+      isEmail ? { email: cleanIdentifier } : { phone: cleanIdentifier }
     );
 
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    await sendOTP(identifier);
+    await sendOTP(cleanIdentifier);
 
     return res.json({
-      message: isEmail
-        ? "OTP sent to email"
-        : "OTP sent (check server console)",
+      success: true,
+      message: "OTP sent",
     });
   } catch (err) {
-    console.error("Forgot Error:", err);
-    return res.status(500).json({ message: "Server error" });
+    console.error("❌ Forgot Error:", err);
+    return res.status(500).json({ message: err.message || "Server error" });
   }
 };
 
 // ==============================
-// VERIFY OTP (EMAIL + PHONE)
+// VERIFY OTP
 // ==============================
 export const verifyOtp = async (req, res) => {
   try {
     const { identifier, otp } = req.body;
 
-    const ok = await verifyOTPCode(identifier, otp);
+    if (!identifier || !otp) {
+      return res.status(400).json({ message: "Missing data" });
+    }
+
+    const ok = await verifyOTPCode(identifier.trim(), otp.trim());
 
     if (!ok) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
-    return res.json({ message: "OTP verified" });
+    return res.json({
+      success: true,
+      message: "OTP verified",
+    });
   } catch (err) {
-    console.error("Verify OTP Error:", err);
+    console.error("❌ Verify OTP Error:", err);
     return res.status(500).json({ message: "Server error" });
   }
 };
 
 // ==============================
-// RESET PASSWORD (EMAIL + PHONE)
+// RESET PASSWORD
 // ==============================
 export const resetPassword = async (req, res) => {
   try {
     const { identifier, otp, newPassword } = req.body;
 
-    const ok = await verifyOTPCode(identifier, otp);
+    if (!identifier || !otp || !newPassword) {
+      return res.status(400).json({ message: "Missing data" });
+    }
+
+    const cleanIdentifier = identifier.trim();
+
+    const ok = await verifyOTPCode(cleanIdentifier, otp.trim());
+
     if (!ok) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
-    const isEmail = identifier.includes("@");
+    const isEmail = cleanIdentifier.includes("@");
 
     const user = await User.findOne(
-      isEmail ? { email: identifier } : { phone: identifier }
+      isEmail ? { email: cleanIdentifier } : { phone: cleanIdentifier }
     );
 
     if (!user) {
@@ -193,9 +215,12 @@ export const resetPassword = async (req, res) => {
     user.password = newPassword;
     await user.save();
 
-    return res.json({ message: "Password updated successfully" });
+    return res.json({
+      success: true,
+      message: "Password updated successfully",
+    });
   } catch (err) {
-    console.error("Reset Password Error:", err);
+    console.error("❌ Reset Password Error:", err);
     return res.status(500).json({ message: "Server error" });
   }
 };

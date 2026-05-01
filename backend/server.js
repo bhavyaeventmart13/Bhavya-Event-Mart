@@ -6,28 +6,30 @@ import compression from "compression";
 import http from "http";
 import { Server } from "socket.io";
 
-import keywordRoutes from "./routes/keywordRoutes.js";
 import { connectDB } from "./config/db.js";
 
+// ROUTES
+import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import quickOrderRoutes from "./routes/quickOrderRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import homeRoutes from "./routes/homeRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
+import keywordRoutes from "./routes/keywordRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
+import communicationRoutes from "./routes/communicationRoutes.js";
+import webhookRoutes from "./routes/webhookRoutes.js";
+import productBackupRoutes from "./routes/productBackupRoutes.js";
+import userUploadRoutes from "./routes/userUploadRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
 import canvaRoutes from "./routes/canvaRoutes.js";
 import popupRoutes from "./routes/popupRoutes.js";
-import authRoutes from "./routes/authRoutes.js";
-import cartRoutes from "./routes/cartRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import uploadRoutes from "./routes/uploadRoutes.js";
-import homeRoutes from "./routes/homeRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import blogRoutes from "./routes/blogRoutes.js";
-import productBackupRoutes from "./routes/productBackupRoutes.js";
-import userUploadRoutes from "./routes/userUploadRoutes.js";
-import communicationRoutes from "./routes/communicationRoutes.js";
-import webhookRoutes from "./routes/webhookRoutes.js";
-import analyticsRoutes from "./routes/analyticsRoutes.js";
-import quickOrderRoutes from "./routes/quickOrderRoutes.js";
-import taskRoutes from "./routes/taskRoutes.js";
+
 dotenv.config();
 connectDB();
 
@@ -38,9 +40,8 @@ const app = express();
 // ==============================
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://bhavya-event-mart-frontend.onrender.com", // ✅ FRONTEND
-  "https://bhavya-event-mart.onrender.com", // optional
-
+  "https://bhavya-event-mart-frontend.onrender.com",
+  "https://bhavya-event-mart.onrender.com",
 ];
 
 app.use(
@@ -52,65 +53,59 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
 );
 
 // ==============================
-// SECURITY
+// MIDDLEWARE
 // ==============================
-app.use(
-  helmet({
-    crossOriginResourcePolicy: false,
-  })
-);
-
+app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(compression());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));
+
+// ==============================
+// DEBUG ROUTE (VERY IMPORTANT)
+// ==============================
+app.get("/api/test", (req, res) => {
+  res.json({ message: "API working" });
+});
 
 // ==============================
 // ROUTES
 // ==============================
 
-// uploads
-app.use("/api/user-uploads", userUploadRoutes);
+// 🔥 IMPORTANT: AUTH FIRST (to debug easily)
+app.use("/api/auth", authRoutes);
 
-// webhook FIRST
-app.use("/api/webhooks", webhookRoutes);
-
-// backup
-app.use("/api", productBackupRoutes);
-
-// main APIs
+// Other routes
+app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/ai", aiRoutes);
-app.use("/api/canva", canvaRoutes);
-app.use("/api/popups", popupRoutes);
-
-// ⚠️ KEEP BOTH but now CLEAN FLOW
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/quick-orders", quickOrderRoutes);
 app.use("/api/tasks", taskRoutes);
-
 app.use("/api/upload", uploadRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/keywords", keywordRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/communication", communicationRoutes);
+app.use("/api/webhooks", webhookRoutes);
+app.use("/api", productBackupRoutes);
+app.use("/api/user-uploads", userUploadRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/canva", canvaRoutes);
+app.use("/api/popups", popupRoutes);
 
 // ==============================
-// 404 API HANDLER
+// 404 HANDLER
 // ==============================
 app.use((req, res, next) => {
   if (req.path.startsWith("/api")) {
+    console.log("❌ 404 HIT:", req.method, req.path); // 🔥 DEBUG
     return res.status(404).json({ message: "API route not found" });
   }
   next();
@@ -141,14 +136,12 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
-    methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
 io.on("connection", (socket) => {
   console.log("🔌 Admin connected:", socket.id);
-
   socket.on("disconnect", () => {
     console.log("❌ Admin disconnected:", socket.id);
   });

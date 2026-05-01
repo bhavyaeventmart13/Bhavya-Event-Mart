@@ -1,19 +1,18 @@
 // ========================================================
-// Email-based OTP service (Dev + Production ready)
+// Simple in-memory OTP service (for testing & dev use)
+// Replace later with Twilio / Fast2SMS / MSG91 integration.
 // ========================================================
 
-import { sendOtpEmail } from "../utils/emailService.js"; // 🔥 adjust path if needed
-
-const otpStore = new Map(); // Map<email, { otp, expires, lastSent }>
+const otpStore = new Map(); // Map<phone, { otp, expires, lastSent }>
 
 // ==============================
-// Generate & Send OTP (EMAIL)
+// Generate & Send OTP
 // ==============================
-export const sendOTP = async (email) => {
+export const sendOTP = async (phone) => {
   const now = Date.now();
 
-  // ✅ Rate limit (1 OTP per 60 sec)
-  const existing = otpStore.get(email);
+  // ✅ Basic rate limit (avoid spam: 1 OTP per 60 sec)
+  const existing = otpStore.get(phone);
   if (existing && now - existing.lastSent < 60 * 1000) {
     const wait = Math.ceil((60 * 1000 - (now - existing.lastSent)) / 1000);
     throw new Error(`Please wait ${wait}s before requesting another OTP.`);
@@ -22,44 +21,44 @@ export const sendOTP = async (email) => {
   // ✅ Generate 6-digit OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-  // ✅ Store OTP (5 min expiry)
-  otpStore.set(email, {
+  // ✅ Save OTP with expiry (5 minutes)
+  otpStore.set(phone, {
     otp,
-    expires: now + 5 * 60 * 1000,
+    expires: now + 5 * 60 * 1000, // 5 min
     lastSent: now,
   });
 
-  // ✅ Send OTP via EMAIL
-  await sendOtpEmail(email, otp);
+  // ✅ Show OTP in console for testing
+  console.log(`✅ OTP for ${phone}: ${otp} (valid for 5 min)`);
 
-  console.log(`✅ OTP for ${email}: ${otp}`);
-
+  // In real implementation → integrate SMS API here
   return otp;
 };
 
 // ==============================
 // Verify OTP
 // ==============================
-export const verifyOTPCode = async (email, otp) => {
-  const data = otpStore.get(email);
+export const verifyOTPCode = async (phone, otp) => {
+  const data = otpStore.get(phone);
 
-  if (!data) return false;
+  if (!data) {
+    return false; // no OTP stored
+  }
 
-  // ❌ Expired
+  // ✅ Check expiry
   if (Date.now() > data.expires) {
-    otpStore.delete(email);
-    console.warn(`❌ OTP expired for ${email}`);
+    otpStore.delete(phone);
+    console.warn(`❌ OTP for ${phone} expired`);
     return false;
   }
 
-  // ❌ Wrong OTP
-  if (data.otp !== otp) {
-    console.warn(`❌ Invalid OTP for ${email}`);
-    return false;
+  // ✅ Validate code
+  if (data.otp === otp) {
+    otpStore.delete(phone); // remove after successful use
+    console.log(`✅ OTP verified for ${phone}`);
+    return true;
   }
 
-  // ✅ Success
-  otpStore.delete(email);
-  console.log(`✅ OTP verified for ${email}`);
-  return true;
+  console.warn(`❌ Invalid OTP attempt for ${phone}`);
+  return false;
 };

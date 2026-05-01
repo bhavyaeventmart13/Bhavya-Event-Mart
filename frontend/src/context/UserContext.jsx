@@ -35,15 +35,15 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   }, []);
 
-  // ================= REGISTER =================
+  // ================= REGISTER (✅ FIXED) =================
   const register = useCallback(
     async (payload) => {
       try {
         setLoading(true);
 
         const { data } = await axios.post(
-          `${API_BASE}/api/user/register`,
-          payload
+          `${API_BASE}/api/auth/register-public`, // ✅ FIXED ROUTE
+          payload // ❌ NO TOKEN HERE
         );
 
         return { success: true, data };
@@ -59,20 +59,19 @@ export const UserProvider = ({ children }) => {
     [API_BASE]
   );
 
-  // ================= LOGIN (FIXED) =================
+  // ================= LOGIN (✅ FIXED) =================
   const login = useCallback(
     async (payload) => {
       try {
         setLoading(true);
 
-        // ✅ FIXED: send identifier (NOT phone)
         const loginPayload = {
           identifier: payload.identifier || payload.phone,
           password: payload.password,
         };
 
         const { data } = await axios.post(
-          `${API_BASE}/api/user/login`,
+          `${API_BASE}/api/auth/login`, // ✅ FIXED ROUTE
           loginPayload
         );
 
@@ -136,10 +135,10 @@ export const UserProvider = ({ children }) => {
 
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUser(updatedUser);
-    } catch {
+    } catch (err) {
       logout();
     }
-  }, [API_BASE, authHeader, logout]);
+  }, [API_BASE, authHeader, logout, user]);
 
   useEffect(() => {
     fetchProfile();

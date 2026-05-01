@@ -1,11 +1,11 @@
 import express from "express";
 import {
-  register,
   login,
   profile,
   forgot,
   verifyOtp,
   resetPassword,
+  register, // ✅ ADD THIS
 } from "../controllers/authController.js";
 
 import { protect, adminMiddleware } from "../middlewares/authMiddleware.js";
@@ -13,10 +13,13 @@ import { protect, adminMiddleware } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // =========================================
-// PUBLIC ROUTES
+// PUBLIC ROUTES (AUTH ONLY)
 // =========================================
 
-router.post("/register", register);
+// ✅ PUBLIC REGISTER (FIX — for website/app users)
+router.post("/register-public", register);
+
+// Existing routes
 router.post("/login", login);
 router.post("/forgot", forgot);
 router.post("/verify-otp", verifyOtp);
