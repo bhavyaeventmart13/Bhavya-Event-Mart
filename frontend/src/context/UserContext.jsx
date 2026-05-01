@@ -113,29 +113,32 @@ export const UserProvider = ({ children }) => {
     [API_BASE, pendingCheckout]
   );
 
-  // ================= FETCH PROFILE =================
+  // ================= FETCH PROFILE (FIXED) =================
   const fetchProfile = useCallback(async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
     try {
       const { data } = await axios.get(
-        `${API_BASE}/api/auth/profile`, // ✅ FIXED
+        `${API_BASE}/api/auth/profile`,
         {
           headers: authHeader(),
         }
       );
 
-      if (!data) return;
+      // 🔥 FIX: correct response structure
+      if (!data?.user) return;
+
+      const userData = data.user;
 
       const updatedUser = {
         ...(user || {}),
-        id: data._id || data.id,
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-        role: data.role || "customer",
+        id: userData._id,
+        name: userData.name,
+        phone: userData.phone,
+        email: userData.email,
+        address: userData.address,
+        role: userData.role || "customer",
         token,
       };
 
