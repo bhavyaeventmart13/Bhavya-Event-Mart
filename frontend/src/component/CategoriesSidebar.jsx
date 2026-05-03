@@ -1,6 +1,6 @@
 // ===========================================
-// CategoriesSidebar.jsx (V11 - PERFORMANCE FIX)
-// SAME UI + SAME LOGIC (ONLY OPTIMIZED)
+// CategoriesSidebar.jsx (FINAL PRO VERSION)
+// Hover + Click Lock + Outside Click Close + Navigation
 // ===========================================
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -45,25 +45,26 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
   const [categories, setCategories] = useState(fallbackCategories);
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [expandedMobile, setExpandedMobile] = useState(null);
+  const [clickedCategory, setClickedCategory] = useState(null);
+  const [disableHover, setDisableHover] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const location = useLocation();
   const navigate = useNavigate();
-
   const resizeTimeout = useRef(null);
 
   /* -----------------------------------
-     Resize detection (DEBOUNCED)
+     Resize detection
   ----------------------------------- */
   useEffect(() => {
     const handleResize = () => {
       clearTimeout(resizeTimeout.current);
-
       resizeTimeout.current = setTimeout(() => {
         setIsMobile(window.innerWidth <= 768);
       }, 120);
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -73,14 +74,33 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
   }, []);
 
   /* -----------------------------------
-     Load Categories (WITH CACHE)
+     Close on outside click
+  ----------------------------------- */
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const sidebar = document.querySelector(".categories-sidebar");
+
+      if (sidebar && !sidebar.contains(e.target)) {
+        setClickedCategory(null);
+        setDisableHover(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  /* -----------------------------------
+     Load Categories
   ----------------------------------- */
   useEffect(() => {
     let isMounted = true;
 
     const load = async () => {
       try {
-        // 🚀 cache added (no extra API calls)
         const cached = sessionStorage.getItem("categories");
 
         if (cached) {
@@ -109,7 +129,6 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
           formatted.length > 0 ? formatted : fallbackCategories;
 
         if (isMounted) setCategories(finalData);
-
         sessionStorage.setItem("categories", JSON.stringify(finalData));
       } catch {
         if (isMounted) setCategories(fallbackCategories);
@@ -117,14 +136,11 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
     };
 
     load();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => (isMounted = false);
   }, []);
 
   /* -----------------------------------
-     Helpers (memoized)
+     Helpers
   ----------------------------------- */
   const hasSubcategories = useCallback(
     (category) =>
@@ -151,9 +167,6 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
     [navigate, onClose]
   );
 
-  /* -----------------------------------
-     Mobile expand logic (optimized)
-  ----------------------------------- */
   const handleMobileTap = useCallback(
     (e, category) => {
       if (!isMobile) return;
@@ -176,7 +189,14 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
     <>
       {isOpen && <div className="sidebar-overlay show" onClick={onClose} />}
 
-      <aside className={`categories-sidebar fade-in ${isOpen ? "open" : ""}`}>
+      <aside
+        className={`categories-sidebar ${isOpen ? "open" : ""}`}
+        onMouseLeave={() => {
+          if (!isMobile && !clickedCategory) {
+            setDisableHover(false);
+          }
+        }}
+      >
         {isMobile && (
           <button className="close-btn" onClick={onClose}>
             ×
@@ -199,21 +219,28 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
           <ul className="menu-list">
             {categories.map((category) => {
               const open =
-                (!isMobile && hoveredCategory === category._id) ||
-                (isMobile && expandedMobile === category._id);
+                (isMobile && expandedMobile === category._id) ||
+                (!isMobile &&
+                  (clickedCategory === category._id ||
+                    (clickedCategory === null &&
+                      !disableHover &&
+                      hoveredCategory === category._id)));
 
               return (
                 <li
                   key={category._id}
                   className={`menu-item ${open ? "expanded" : ""}`}
-                  onMouseEnter={() =>
-                    !isMobile && setHoveredCategory(category._id)
-                  }
-                  onMouseLeave={() =>
-                    !isMobile && setHoveredCategory(null)
-                  }
+                  onMouseEnter={() => {
+                    if (!isMobile && !disableHover) {
+                      setHoveredCategory(category._id);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      setHoveredCategory(null);
+                    }
+                  }}
                 >
-                  {/* 🔥 FIXED: keep <a> but prevent reload (fast SPA nav) */}
                   <a
                     href={`/categories/${encodeURIComponent(category.name)}`}
                     className={
@@ -225,7 +252,16 @@ const CategoriesSidebar = ({ isOpen = false, onClose = () => {} }) => {
                       e.preventDefault();
 
                       if (hasSubcategories(category)) {
-                        if (isMobile) handleMobileTap(e, category);
+                        if (isMobile) {
+                          handleMobileTap(e, category);
+                        } else {
+                          // LOCK OPEN + NAVIGATE
+                          setClickedCategory(category._id);
+                          setDisableHover(true);
+                          navigate(
+                            `/categories/${encodeURIComponent(category.name)}`
+                          );
+                        }
                         return;
                       }
 

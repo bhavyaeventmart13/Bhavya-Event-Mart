@@ -1,5 +1,5 @@
 /* =====================================================
-  GLOBAL THEME & VARIABLES
+  GLOBAL THEME & VARIABLES
 ===================================================== */
 :root {
   --color-primary: #daa520;
@@ -20,7 +20,7 @@
 }
 
 /* =====================================================
-  BASE STYLES
+  BASE STYLES
 ===================================================== */
 body {
   background-color: var(--bg-black);
@@ -31,13 +31,12 @@ body {
 }
 
 /* =====================================================
-  CAROUSEL BANNER STYLES
+  CAROUSEL BANNER STYLES
 ===================================================== */
 .carousel-wrapper {
   height: 220px;
   margin: 0 0.5rem;
-width: calc(100% - 1rem);
-
+  width: calc(100% - 1rem);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -53,24 +52,30 @@ width: calc(100% - 1rem);
 }
 
 /* =====================================================
-  LAYOUT STRUCTURE
+  LAYOUT STRUCTURE
 ===================================================== */
 .home-layout {
   display: flex;
   width: 100%;
+  overflow: visible; /* 🔥 FIX submenu cut */
 }
 
 /* === DESKTOP SIDEBAR: Fixed width (250px) on screens > 992px === */
-  .home-layout>.sidebar {
-    /* Selector must match the component's top-level class name */
-    flex: 0 0 250px;
-    background-color: var(--bg-dark);
-    height: 100vh;
-    position: sticky;
-    top: 0;
-    overflow: visible;
-    z-index: 10;
-  }
+.home-layout > .sidebar {
+  /* Selector must match the component's top-level class name */
+  flex: 0 0 250px;
+  background-color: var(--bg-dark);
+
+  height: 100vh;
+  position: sticky;
+  top: 0;
+
+  overflow: visible; /* keep visible for submenu */
+  z-index: 10;
+
+  display: flex;           /* 🔥 FIX */
+  flex-direction: column;  /* 🔥 FIX */
+}
 
 .home-main {
   flex: 1;
@@ -78,12 +83,15 @@ width: calc(100% - 1rem);
   flex-direction: column;
   width: 100%;
   min-width: 0;
+
   position: relative;
   z-index: 1;
+
+  overflow: visible; /* 🔥 CRITICAL FIX */
 }
 
 /* =====================================================
-  HERO TEXT CONTAINER
+  HERO TEXT CONTAINER
 ===================================================== */
 .hero-text-container {
   background-color: var(--bg-card);
@@ -131,16 +139,14 @@ width: calc(100% - 1rem);
   margin-top: 1rem;
 }
 
-/* Other styles remain the same... */
-
 /* =====================================================
-  GRID SECTION (Best Seller & Categories)
+  GRID SECTION (Best Seller & Categories)
 ===================================================== */
 .grid-section {
   background-color: var(--bg-card);
   border-radius: 12px;
   padding: 3rem 1.5rem 1.5rem 1.5rem;
- margin: 0 0.5rem 1rem 0.5rem;
+  margin: 0 0.5rem 1rem 0.5rem;
   width: calc(100% - 1rem);
   box-sizing: border-box;
   position: relative;
@@ -164,11 +170,11 @@ width: calc(100% - 1rem);
 }
 
 /* =====================================================
-  INFO GRID / FOOTER SECTION
+  INFO GRID / FOOTER SECTION
 ===================================================== */
 .footer-section {
   width: 100%;
-   padding: 2rem 0.5rem;
+  padding: 2rem 0.5rem;
   box-sizing: border-box;
 }
 
@@ -236,7 +242,7 @@ width: calc(100% - 1rem);
 }
 
 /* =====================================================
-  BUTTONS & FORMS
+  BUTTONS & FORMS
 ===================================================== */
 .btn {
   padding: 0.6rem 1.2rem;
@@ -284,7 +290,7 @@ width: calc(100% - 1rem);
 }
 
 /* =====================================================
-  RESPONSIVE DESIGN
+  RESPONSIVE DESIGN
 ===================================================== */
 @media (max-width: 992px) {
   .home-layout {
@@ -292,12 +298,11 @@ width: calc(100% - 1rem);
   }
 
   /* 🔴 FIX: Hide the structural sidebar on mobile screens. 
-       The actual mobile sidebar (drawer/overlay) must be handled 
-       by the CategoriesSidebar component's internal CSS and state.
-    */
-  .home-layout>.sidebar {
+     The actual mobile sidebar (drawer/overlay) must be handled 
+     by the CategoriesSidebar component's internal CSS and state.
+  */
+  .home-layout > .sidebar {
     display: none;
-    /* This is the crucial fix */
   }
 
   .grid-top,
@@ -329,7 +334,6 @@ width: calc(100% - 1rem);
 }
 
 @media (max-width: 576px) {
-
   .carousel-wrapper,
   .carousel-wrapper img {
     height: 150px;
@@ -366,8 +370,9 @@ width: calc(100% - 1rem);
     font-size: 1.1rem;
   }
 }
+
 /* =========================================
-   🧩 FIX: Sidebar submenu visibility
+  🧩 FIX: Sidebar submenu visibility
 ========================================= */
 @media (min-width: 769px) {
   .home-main {
@@ -383,4 +388,3 @@ width: calc(100% - 1rem);
     z-index: 9999 !important; /* ensures dropdowns float above everything */
   }
 }
-
