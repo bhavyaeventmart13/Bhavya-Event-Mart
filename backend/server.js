@@ -42,6 +42,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://bhavya-event-mart-frontend.onrender.com",
   "https://bhavya-event-mart.onrender.com",
+  "https://bhavyaeventmart.com", // ✅ ADD THIS
 ];
 
 app.use(
