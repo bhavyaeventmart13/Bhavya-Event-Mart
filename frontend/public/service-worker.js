@@ -1,6 +1,6 @@
 /* =====================================================
-   🌸 BHAVYA EVENT MART — SERVICE WORKER (v5 FINAL FIX)
-   (Fixes favicon + manifest cache issue permanently)
+   🌸 BHAVYA EVENT MART — SERVICE WORKER (v6 FINAL STABLE)
+   (Fixes category crash + safe fetch handling)
 ===================================================== */
 
 // -----------------------------------------------------
@@ -19,8 +19,8 @@ if (self.location.hostname === "localhost") {
 ===================================================== */
 else {
 
-  // 🔥 CHANGE VERSION EVERY TIME YOU UPDATE ICONS
-  const CACHE_NAME = "bhavya-cache-v5";
+  // 🔥 CHANGE VERSION WHEN YOU UPDATE CACHE
+  const CACHE_NAME = "bhavya-cache-v6";
 
   const URLS_TO_CACHE = [
     "/",
@@ -66,12 +66,20 @@ else {
   });
 
   // ---------------------------------------------------
-  // 🌐 FETCH — Network First (NO CACHE FOR ICONS)
+  // 🌐 FETCH — Network First (SAFE VERSION)
   // ---------------------------------------------------
   self.addEventListener("fetch", (event) => {
     if (event.request.method !== "GET") return;
 
     const url = new URL(event.request.url);
+
+    // 🔥 VERY IMPORTANT: Skip API & dynamic routes
+    if (
+      url.pathname.startsWith("/api") ||
+      url.pathname.startsWith("/categories")
+    ) {
+      return;
+    }
 
     // ❌ NEVER CACHE THESE (IMPORTANT FIX)
     if (
@@ -86,12 +94,20 @@ else {
     // ✅ Normal requests
     event.respondWith(
       fetch(event.request)
-        .then((response) => response)
+        .then((response) => {
+          return response; // ✅ always return Response
+        })
         .catch(() => {
+          // ✅ SPA fallback
           if (event.request.mode === "navigate") {
             return caches.match("/index.html");
           }
-          return caches.match(event.request);
+
+          // ✅ NEVER return undefined (critical fix)
+          return new Response("Offline", {
+            status: 503,
+            statusText: "Offline",
+          });
         })
     );
   });
