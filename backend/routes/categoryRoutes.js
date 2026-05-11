@@ -3,7 +3,8 @@ import express from "express";
 import mongoose from "mongoose"; // 🔥 ADD THIS
 import Category from "../models/Category.js";
 import Product from "../models/Product.js";
-
+import { uploadImage } from "../services/uploadService.js";
+import multer from "multer";
 const router = express.Router();
 const normalize = (str = "") =>
   str
@@ -49,6 +50,7 @@ router.get("/search", async (req, res) => {
     res.status(500).json({ message: "Search failed" });
   }
 });
+const upload = multer({ storage: multer.memoryStorage() });
 
 // ===============================
 // GET ALL CATEGORIES
@@ -144,12 +146,14 @@ router.post("/updateAll", async (req, res) => {
             $set: {
               name: cat.name,
               order: index,
+               thumbnail: cat.thumbnail || "", 
               subcategories: (cat.subcategories || []).map((sub, subIndex) => ({
                 _id: mongoose.Types.ObjectId.isValid(sub._id)
                   ? sub._id
                   : new mongoose.Types.ObjectId(),
                 name: sub.name,
-                order: subIndex
+                order: subIndex,
+                 thumbnail: sub.thumbnail || ""
               }))
             },
           },
@@ -354,6 +358,31 @@ router.post("/delete-subcategory", async (req, res) => {
     });
   }
 });
+
+// img 
+// ===============================
+// UPLOAD SUBCATEGORY THUMBNAIL
+// ===============================
+router.post("/upload-thumbnail", upload.single("image"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No image file provided" });
+    }
+
+   const file = req.file;
+    const result = await uploadImage(file);
+
+    return res.json({
+      thumbnailUrl: result.thumbnailUrl,
+      url: result.url,
+    });
+  } catch (error) {
+    console.error("❌ Thumbnail upload error:", error);
+    res.status(500).json({ message: "Upload failed" });
+  }
+});
+
+
 // ===============================
 // REORDER SUBCATEGORIES
 // ===============================
