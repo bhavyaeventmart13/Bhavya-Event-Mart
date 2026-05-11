@@ -22,7 +22,7 @@ const storage = new Storage({
 const bucket = storage.bucket(process.env.GCLOUD_BUCKET);
 
 // ✅ CDN BASE (NEW)
-const CDN_BASE = "https://cdn.pankajcloth.com";
+const CDN_BASE = `https://storage.googleapis.com/${process.env.GCLOUD_BUCKET}`;
 
 // ===============================
 // 🔥 COMPRESS IMAGE (NO LOGIC CHANGE)
