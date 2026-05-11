@@ -50,7 +50,7 @@ const Register = () => {
         <div className="auth-form-box">
           <h2>Create Account</h2>
           <p className="auth-subtext">
-            Join Pankaj Cloth & Wedding Tent Industry
+            Join Bhavya Event Mart 
           </p>
 
           <form onSubmit={handleSubmit}>

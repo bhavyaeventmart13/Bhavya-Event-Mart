@@ -328,7 +328,7 @@ const [allCategories, setAllCategories] = useState([]);
 // ======================================================
 const ContactSection = () => {
   const address =
-    "Pankaj cloth & wedding tent industry (Warehouse), Beside Chattarpur Farms, Tarodi, Nagpur, Maharashtra 440035";
+    "plot No: 142, Cuttack Road, Opposite of Bhagwan Tower, Laxmisagar, Bhubaneswar - 751006";
 
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     address
