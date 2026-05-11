@@ -328,7 +328,7 @@ const [allCategories, setAllCategories] = useState([]);
 // ======================================================
 const ContactSection = () => {
   const address =
-    "plot No: 142, Cuttack Road, Opposite of Bhagwan Tower, Laxmisagar, Bhubaneswar - 751006";
+    " Bhaya Event Mart plot No: 142, Cuttack Road, Opposite of Bhagwan Tower, Laxmisagar, Bhubaneswar - 751006";
 
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     address
