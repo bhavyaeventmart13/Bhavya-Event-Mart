@@ -243,14 +243,12 @@ const [allCategories, setAllCategories] = useState([]);
             <div className="hero-inner">
               <div className="hero-content">
                 <h1 className="hero-title">
-                  Pankaj Cloth & Wedding Tent Industry
+                Bhavya Event Mart 
                 </h1>
                 <p className="hero-tagline">
-                  Supplying Excellence For Every Celebration
+                  House Of Event Supply 
                 </p>
-                <p className="hero-manufacturer">
-                  Manufacturer & Importer | Since 1975
-                </p>
+              
               </div>
             </div>
           </div>
